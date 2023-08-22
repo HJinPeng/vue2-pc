@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { getList, getList2 } from '@/api/test'
 export default {
   data() {
     return {
@@ -42,6 +43,14 @@ export default {
       ],
       value: ''
     }
+  },
+  mounted() {
+    getList().then((res) => {
+      console.log('res1', res)
+    })
+    getList2().then((res) => {
+      console.log('res2', res)
+    })
   }
 }
 </script>

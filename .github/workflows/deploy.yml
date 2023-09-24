@@ -1,0 +1,56 @@
+name: deploy for test
+
+on:
+  push:
+    branches:
+      - 'test'
+    paths:
+      - '.github/workflows/*'
+      - '__test__/**'
+      - 'src/**'
+      - 'config/*'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'nginx.conf'
+
+jobs:
+  deploy-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - name: install & lint # 安装 和 lint
+         run: |
+           npm i
+           npm run lint
+      - name: set ssh key # 临时设置 ssh key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.COSEN_ID_RSA}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan "47.113.146.51" >> ~/.ssh/known_hosts
+      - name: deploy
+        run: |
+          ssh root@47.113.146.51 "
+            cd /home/jinpengh/project/vue2-pc;
+            git remote add origin https://HJinPeng:${{secrets.COSEN_TOKEN}}@github.com/HJinPeng/vue2-pc.git;
+            git checkout test;
+            git config pull.rebase false;
+            git pull origin test;
+            git remote remove origin;
+
+            # 构建 prd-dev
+            # npm i;
+            # npm run build-dev;
+
+            # 启动 docker
+            docker-compose build vue2-pc; # 和 docker-compose.yml service 名字一致
+            docker-compose up -d;
+          "
+      - name: delete ssh key
+        run: rm -rf ~/.ssh/id_rsa
+

@@ -32,7 +32,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{secrets.COSEN_ID_RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan "47.113.146.51" >> ~/.ssh/known_hosts【】=-
+          ssh-keyscan "47.113.146.51" >> ~/.ssh/known_hosts
       - name: deploy
         run: |
           ssh root@47.113.146.51 "

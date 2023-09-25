@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '16'
+
+      - name: BUILD
         run: npm install && npm run build
 
       - name: Deploy to Server # 执行部署任务

@@ -33,12 +33,13 @@ jobs:
       - name: Docker Compose Build A Service & Push Action
         uses: 1-1is0/docker-compose-build-push@publish
         with:
-          image: registry.cn-heyuan.aliyuncs.com/jinpengh/vue2-pc
+          image: jinpengh/vue2-pc
           tags: test
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
-          composeFile: ./docker-compose.yml
+          dockerfile: Dockerfile
+          composeFile: docker-compose.yml
           serviceName: vue2-pc
           addTimestamp: true
           pushImage: true

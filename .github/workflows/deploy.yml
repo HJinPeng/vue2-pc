@@ -7,6 +7,9 @@ on:
     branches:
       - test
 
+env:
+  REGISTRY: registry.cn-heyuan.aliyuncs.com
+
 # 工作流的任务集配置
 jobs:
   # 定义一个 job，id 为 build
@@ -19,13 +22,23 @@ jobs:
       - name: Checkout # 定义 step 的名字，方便作日志排查
         uses: actions/checkout@v3 # uses 表示该步骤使用一个 action 。斜线前面的 'actions' 表示这是官方的action
 
-      - name: NODE
+      - name: Install node
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: BUILD
+      - name: Build dist
         run: npm install && npm run build
+
+      - name: Docker Compose Build A Service & Push Action
+        uses: 1-1is0/docker-compose-build-push@publish
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          composeFile: ./docker-compose.yml
+          serviceName: vue2-pc
+          addTimestamp: true
 
       - name: Deploy to Server # 执行部署任务
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest # 第三方的 action

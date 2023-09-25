@@ -32,14 +32,11 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{secrets.COSEN_ID_RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan "47.113.146.51" >> ~/.ssh/known_hosts
+          ssh-keyscan "47.113.146.51" >> ~/.ssh/known_hosts【】=-
       - name: deploy
         run: |
           ssh root@47.113.146.51 "
             cd /home/jinpengh/project/vue2-pc;
-            git remote add origin https://HJinPeng:${{secrets.COSEN_TOKEN}}@github.com/HJinPeng/vue2-pc.git;
-            git checkout test;
-            git config pull.rebase false;
             git pull origin test;
             git remote remove origin;
 
@@ -51,6 +48,8 @@ jobs:
             docker-compose build vue2-pc; # 和 docker-compose.yml service 名字一致
             docker-compose up -d;
           "
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: delete ssh key
         run: rm -rf ~/.ssh/id_rsa
 

@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: install & lint # 安装 和 lint
+      - name: install  lint # 安装 和 lint
          run: |
            npm i
            npm run lint

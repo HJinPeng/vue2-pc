@@ -33,15 +33,15 @@ jobs:
       - name: Docker Compose Build A Service & Push Action
         uses: 1-1is0/docker-compose-build-push@publish
         with:
-          #image: jinpengh/vue2-pc
+          image: jinpengh/vue2-pc
           #tags: test-${{ github.sha }}
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
           #dockerfile: Dockerfile
-          composeFile: docker-compose.yml
+          #composeFile: docker-compose.yml
           serviceName: vue2-pc
-          #addTimestamp: true
+          addTimestamp: true
           pushImage: true
           buildArgs:
             GITHUB_SHA: ${{ github.sha }}

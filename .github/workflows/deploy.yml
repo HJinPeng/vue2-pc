@@ -8,7 +8,10 @@ on:
       - test
 
 env:
-  REGISTRY: registry.cn-heyuan.aliyuncs.com
+  PROJECT: vue2-pc
+  DOCKER_REGISTRY: registry.cn-heyuan.aliyuncs.com
+  DOCKER_IMAGE: jinpengh/vue2-pc
+  DOCKER_TAG: ${{ github.ref_name }}-${{ github.sha }}
 
 # 工作流的任务集配置
 jobs:
@@ -28,18 +31,18 @@ jobs:
           node-version: '16'
 
       - name: Build dist
-        run: npm install --registry=http://registry.npmmirror.com && npm run build
+        run: npm install && npm run build
 
       - name: Docker Compose Build A Service & Push Action
         uses: 1-1is0/docker-compose-build-push@publish
         with:
-          image: jinpengh/vue2-pc
-          tags: test-${{ github.sha }}
-          registry: ${{ env.REGISTRY }}
+          image: ${{ env.DOCKER_IMAGE }}
+          tags: ${{ env.DOCKER_TAG }}
+          registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
           dockerfile: Dockerfile
-          serviceName: vue2-pc
+          serviceName: ${{ env.PROJECT }}
           pushImage: true
 
       - name: Deploy to Server # 执行部署任务
@@ -58,9 +61,9 @@ jobs:
 
           # 完成拷贝后在部署服务器执行的命令：进入项目目录，安装生产依赖，并使用 pm2 管理
           last_ssh: |
-            docker pull ${{ env.REGISTRY }}/jinpengh/vue2-pc:test-${{ github.sha }}
-            docker stop vue2-pc
-            docker rm vue2-pc
-            docker run --name vue-pc -d -p 8081:80 ${{ env.REGISTRY }}/jinpengh/vue2-pc:test-${{ github.sha }}
+            docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+            docker stop ${{ env.PROJECT }}
+            docker rm ${{ env.PROJECT }}
+            docker run --name ${{ env.PROJECT }} -d -p 8080:80 ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
             docker image prune -f
             docker container prune -f

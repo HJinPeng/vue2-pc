@@ -19,30 +19,6 @@ jobs:
 
     # 定义 job 的具体步骤
     steps: # 每一个 step 或者是执行一个 action，或者是执行一个命令
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump job context
-        env:
-          JOB_CONTEXT: ${{ toJson(job) }}
-        run: echo "$JOB_CONTEXT"
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
       - name: Checkout # 定义 step 的名字，方便作日志排查
         uses: actions/checkout@v3 # uses 表示该步骤使用一个 action 。斜线前面的 'actions' 表示这是官方的action
 
@@ -52,21 +28,23 @@ jobs:
           node-version: '16'
 
       - name: Build dist
-        run: npm install && npm run build
+        run: npm install --registry=http://registry.npmmirror.com && npm run build
 
       - name: Docker Compose Build A Service & Push Action
         uses: 1-1is0/docker-compose-build-push@publish
         with:
-          image: jinpengh/vue2-pc
-          tags: test-${{ github.sha }}
+          #image: jinpengh/vue2-pc
+          #tags: test-${{ github.sha }}
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
-          dockerfile: Dockerfile
+          #dockerfile: Dockerfile
           composeFile: docker-compose.yml
           serviceName: vue2-pc
-          addTimestamp: true
+          #addTimestamp: true
           pushImage: true
+          buildArgs:
+            GITHUB_SHA: ${{ github.sha }}
 
       - name: Deploy to Server # 执行部署任务
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest # 第三方的 action

@@ -34,7 +34,7 @@ jobs:
         uses: 1-1is0/docker-compose-build-push@publish
         with:
           image: jinpengh/vue2-pc
-          tags: test
+          tags: test-${{ github.sha }}
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}

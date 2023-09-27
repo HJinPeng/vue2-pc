@@ -1,9 +1,9 @@
 version: '3'
 services:
   vue2-pc:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #  context: .
+    #  dockerfile: Dockerfile
     image: ${VUE2_PC_IMAGE} # 引用官网 nginx 镜像
     container_name: vue2-pc
     ports:

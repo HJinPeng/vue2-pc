@@ -64,7 +64,7 @@ jobs:
           # 完成拷贝后在部署服务器执行的命令：进入项目目录，安装生产依赖，并使用 pm2 管理
           last_ssh: |
             cd ./docker-compose/${{ env.PROJECT }}
-            VUE2_PC_IMAGE=${{env.DOCKER_TAG}} docker-compose up -d
+            VUE2_PC_IMAGE=${{env.IMAGE}} docker-compose up -d
 
           #  docker pull ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
           #  docker stop ${{ env.PROJECT }}

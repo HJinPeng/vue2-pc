@@ -5,6 +5,7 @@ name: vue2-pc
 on:
   push: # 监听到 test 分支的 push 动作
     branches:
+      - master
       - test
 
 env:

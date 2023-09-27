@@ -12,7 +12,7 @@ env:
   DOCKER_REGISTRY: registry.cn-heyuan.aliyuncs.com
   DOCKER_IMAGE: jinpengh/vue2-pc
   DOCKER_TAG: ${{ github.ref_name }}-${{ github.sha }}
-  IMAGE: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
+  IMAGE: registry.cn-heyuan.aliyuncs.com/jinpengh/vue2-pc:${{ github.ref_name }}-${{ github.sha }}
 
 # 工作流的任务集配置
 jobs:

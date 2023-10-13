@@ -4,10 +4,14 @@ import router from './router'
 import store from './store'
 
 import antdv from './common/plugins/antdv'
+import components from './common/plugins/components'
+
+import '@/styles/reset.less'
 
 Vue.config.productionTip = false
 
 Vue.use(antdv)
+Vue.use(components)
 
 new Vue({
   router,

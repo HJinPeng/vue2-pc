@@ -37,10 +37,6 @@ function generateProxy() {
       pathRewrite: {
         ['^' + prefix]: ''
       }
-      // pathRewrite: (path) => {
-      //   console.log('path', path)
-      //   return path.replace(new RegExp('^' + prefix), '')
-      // }
     }
   }
   console.log('result', result)

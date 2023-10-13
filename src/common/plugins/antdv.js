@@ -1,9 +1,10 @@
-import { Button, Select, Input } from 'ant-design-vue'
+import { Button, Select, Input, Icon } from 'ant-design-vue'
 const components = {
   [Button.name]: Button,
   [Select.name]: Select,
   [Select.Option.name]: Select.Option,
-  [Input.name]: Input
+  [Input.name]: Input,
+  [Icon.name]: Icon
 }
 
 const antdv = {

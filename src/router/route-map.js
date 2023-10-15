@@ -3,26 +3,26 @@ export const staticRouteMap = {
   Login: {
     title: '登录',
     path: '/login',
-    componentPath: 'view/login/LoginView.vue',
-    layout: 'SimpleLayout'
+    componentPath: 'views/login/LoginView.vue',
+    layout: 'LayoutSimple'
   },
   Welcome: {
     title: '欢迎页',
     path: '/',
-    componentPath: 'view/welcome/WelcomeView.vue',
-    layout: 'SideHeaderLayout'
+    componentPath: 'views/welcome/WelcomeView.vue',
+    layout: 'LayoutSidebarHeader'
   },
   404: {
     title: '未找到资源',
     path: '/404',
-    componentPath: 'view/exceptions/NotFound.vue',
-    layout: 'SimpleLayout'
+    componentPath: 'views/exceptions/NotFound.vue',
+    layout: 'LayoutSimple'
   },
   403: {
     title: '没有权限访问该资源',
     path: '/404',
-    componentPath: 'view/exceptions/NoPermission.vue',
-    layout: 'SimpleLayout'
+    componentPath: 'views/exceptions/NoPermission.vue',
+    layout: 'LayoutSimple'
   }
 }
 
@@ -32,7 +32,19 @@ export const dynamicRouteMap = {
     title: '用户管理',
     path: '/user-management',
     componentPath: 'views/system/user/UserManagement.vue',
-    layout: 'SideHeaderLayout'
+    layout: 'LayoutSidebarHeader'
+  },
+  DictManagement: {
+    title: '字典管理',
+    path: '/dict-management',
+    componentPath: 'views/system/dict/DictManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  UserDetail: {
+    title: '用户详情',
+    path: '/user-detail',
+    componentPath: 'views/system/user/UserDetail.vue',
+    layout: 'LayoutSidebarHeader'
   }
 }
 

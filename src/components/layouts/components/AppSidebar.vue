@@ -1,7 +1,7 @@
 <script>
-import { Divider, Menu } from 'ant-design-vue'
+import { Menu } from 'ant-design-vue'
 import AppLogo from './AppLogo.vue'
-import { menus } from './menu'
+import { mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -19,10 +19,33 @@ export default {
       openKeys: []
     }
   },
+  computed: {
+    ...mapGetters({ menus: 'Menu', allMenu: 'AllMenu' })
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(route) {
+        const { fullPath = [] } = route.meta
+        this.openKeys = fullPath.reduce((acc, cur) => {
+          if (!cur.path) return [...acc, `${cur.id}`]
+          return acc
+        }, [])
+        for (let i = fullPath.length - 1; i >= 0; i--) {
+          if (!fullPath[i].hidden) {
+            this.selectedKeys = [`${fullPath[i].id}`]
+            break
+          }
+        }
+      }
+    }
+  },
   methods: {
     // 点击菜单
     selectMenu({ keyPath }) {
       this.selectedKeys = keyPath
+      const menu = this.allMenu[keyPath]
+      this.$router.push({ name: menu.menuCode })
     },
     // 点击subMenu
     openChange(openKeys) {
@@ -39,6 +62,7 @@ export default {
     },
     // 渲染菜单
     renderMenu(menuTree) {
+      console.log('menuTree', menuTree)
       return menuTree.map((menu) => {
         if (menu.menuCode && (!menu.children || menu.children.length === 0)) {
           return (
@@ -73,7 +97,7 @@ export default {
           onOpenChange={(openKeys) => this.openChange(openKeys)}
           onSelect={(menu) => this.selectMenu(menu)}
         >
-          {this.renderMenu(this.generateMenu(menus))}
+          {this.renderMenu(this.menus)}
         </a-menu>
       </div>
     )

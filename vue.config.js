@@ -13,7 +13,7 @@ module.exports = defineConfig({
     }
   },
   chainWebpack: (config) => {
-    config.resolve.alias.set('@http', resolve('src/common/http/index'))
+    // config.resolve.alias.set('@http', resolve('src/common/http/index'))
   },
   devServer: {
     proxy: generateProxy()

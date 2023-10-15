@@ -2,6 +2,8 @@ import axios from 'axios'
 // 完整性加密
 import signMd5 from './sign-md5'
 
+import store from '@/store'
+
 import { Notification } from 'ant-design-vue'
 
 // axios实例
@@ -34,6 +36,24 @@ function defaultExtractData(resData, res) {
   }
  * @returns Promise
  */
+
+/**
+ * 请求接口统一入口
+ * @author jinpengh
+ *
+ * @param {Object} param0
+ * @param {String} [param0.method='get']  请求方法
+ * @param {Object} param0.params  query请求参数
+ * @param {Object} param0.data  body请求参数
+ * @param {String} param0.url  地址
+ * @param {'api' | 'mock'} [param0.module='api']  接口模块
+ * @param {Boolean} [param0.alert=true]  报错时弹出警告
+ * @param {Boolean} [param0.md5=false]  使用md5处理参数，用于完整性校验
+ * @param {Function} [param0.validate=defaultValidate]  校验函数，返回true进入then，返回false进入catch
+ * @param {Function} [param0.extractData=defaultExtractData]  提取数据函数
+ * @param {Object} [param0.nativeOptions={}]  支持axios的所有原始请求参数
+ * @returns {Promise<any>}
+ */
 export default function http({
   method = 'get',
   params,
@@ -56,6 +76,9 @@ export default function http({
     url,
     params,
     data,
+    headers: {
+      'X-Access-Token': store.getters.Token || ''
+    },
     ...nativeOptions
   }
   if (md5) {
@@ -66,8 +89,6 @@ export default function http({
     httpParams.headers['X-Sign'] = sign
     httpParams.headers['X-TIMESTAMP'] = signMd5.getTimestamp()
   }
-  // todo: 添加token
-
   return instance(httpParams)
     .then((res) => {
       // 校验通过，返回数据
@@ -94,6 +115,7 @@ export default function http({
         })
       }
       // todo: 添加回到登录页的逻辑
-      return error
+
+      return Promise.reject(error)
     })
 }

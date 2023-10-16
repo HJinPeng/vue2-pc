@@ -50,6 +50,8 @@
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recess-order": "^4.3.0",
     "stylelint-config-recommended-vue": "^1.5.0",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^4.0.0",
     "vue-template-compiler": "^2.6.14"
   },
   "config": {

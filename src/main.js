@@ -6,7 +6,11 @@ import store from './store'
 import antdv from './common/plugins/antdv'
 import components from './common/plugins/components'
 
-import '@/styles/reset.less'
+// 覆盖样式
+import './styles/reset.less'
+
+// 引入svg
+import './assets/svg'
 
 Vue.config.productionTip = false
 

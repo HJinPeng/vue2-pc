@@ -14,6 +14,46 @@ module.exports = defineConfig({
   },
   chainWebpack: (config) => {
     // config.resolve.alias.set('@http', resolve('src/common/http/index'))
+    const svgPath = resolve('src/assets/svg')
+    const svgColorPath = resolve('src/assets/svg/colorful')
+    config.module.rule('svg').exclude.add(svgPath).end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(svgPath)
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: (filePath) => {
+          const name = Path.relative(`${__dirname}/src/assets/svg`, filePath)
+          return name.replace(/\\/g, '/').substring(0, name.length - 4)
+        }
+      })
+      .end()
+      .use('svgo-loader')
+      .loader('svgo-loader')
+      .end()
+    config.module
+      .rule('svgoRemoveColor')
+      .test(/\.svg$/)
+      .include.add(svgPath)
+      .end()
+      .exclude.add(svgColorPath)
+      .end()
+      .use('svgo-loader')
+      .loader('svgo-loader')
+      .options({
+        plugins: [
+          {
+            name: 'removeAttrs',
+            params: {
+              attrs: 'fill'
+            }
+          }
+        ]
+      })
+      .end()
   },
   devServer: {
     proxy: generateProxy(),

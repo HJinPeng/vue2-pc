@@ -16,7 +16,10 @@ module.exports = defineConfig({
     // config.resolve.alias.set('@http', resolve('src/common/http/index'))
   },
   devServer: {
-    proxy: generateProxy()
+    proxy: generateProxy(),
+    client: {
+      overlay: false
+    }
   }
 })
 

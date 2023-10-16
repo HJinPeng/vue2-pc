@@ -1,0 +1,27 @@
+//文字超出n行显示省略号，默认1
+.line(@line: 1) when (@line=1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line(@line) when (default()) {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  overflow: hidden;
+
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+
+  -webkit-line-clamp: @line;
+  text-overflow: ellipsis;
+}
+
+.hover(@color: @primary-color) {
+  cursor: pointer;
+  transition: color 0.3s;
+  &:hover {
+    color: @color;
+  }
+}

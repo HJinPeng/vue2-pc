@@ -14,6 +14,16 @@ module.exports = defineConfig({
   },
   chainWebpack: (config) => {
     // config.resolve.alias.set('@http', resolve('src/common/http/index'))
+    config.module
+      .rule('lessInject')
+      .test(/\.less$/)
+      .use('style-resources-loader')
+      .loader('style-resources-loader')
+      .options({
+        patterns: [resolve('src/styles/var.less'), resolve('src/styles/mixin.less')],
+        injector: 'append'
+      })
+      .end()
     const svgPath = resolve('src/assets/svg')
     const svgColorPath = resolve('src/assets/svg/colorful')
     config.module.rule('svg').exclude.add(svgPath).end()

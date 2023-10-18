@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import auth from './modules/auth'
 import getters from './getters'
 import actions from './actions'
+import auth from './modules/auth'
+import viewStack from './modules/view-stack'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   mutations: {},
   actions,
   modules: {
-    auth
+    auth,
+    viewStack
   }
 })

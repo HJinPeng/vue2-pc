@@ -42,10 +42,10 @@ export default {
   },
   methods: {
     // 点击菜单
-    selectMenu({ keyPath }) {
-      this.selectedKeys = keyPath
-      const menu = this.allMenu[keyPath]
-      this.$router.push({ name: menu.menuCode })
+    clickMenu({ key }) {
+      this.selectedKeys = [key]
+      const menu = this.allMenu[key]
+      this.$router.push({ name: menu.name })
     },
     // 点击subMenu
     openChange(openKeys) {
@@ -62,9 +62,8 @@ export default {
     },
     // 渲染菜单
     renderMenu(menuTree) {
-      console.log('menuTree', menuTree)
       return menuTree.map((menu) => {
-        if (menu.menuCode && (!menu.children || menu.children.length === 0)) {
+        if (menu.name && (!menu.children || menu.children.length === 0)) {
           return (
             <a-menu-item key={`${menu.id}`}>
               {menu.icon && <a-icon type={menu.icon} />}
@@ -95,7 +94,7 @@ export default {
           mode="inline"
           class="app-sidebar__menu"
           onOpenChange={(openKeys) => this.openChange(openKeys)}
-          onSelect={(menu) => this.selectMenu(menu)}
+          onClick={(menu) => this.clickMenu(menu)}
         >
           {this.renderMenu(this.menus)}
         </a-menu>

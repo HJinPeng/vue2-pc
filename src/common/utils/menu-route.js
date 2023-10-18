@@ -32,15 +32,15 @@ export function normalizeMenus(menus) {
  */
 function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
   menus.forEach((menu) => {
-    let _menu = { ...menu, title: menu.permissionName }
+    let _menu = { ...menu, title: menu.permissionName, name: menu.menuCode }
     let routeMap
-    if (_menu.menuCode) {
-      routeMap = allRouteMap[_menu.menuCode]
+    if (_menu.name) {
+      routeMap = allRouteMap[_menu.name]
       if (routeMap) {
         _menu.path = routeMap.path
         _menu.title = _menu.title || routeMap.title
       } else {
-        throw new Error(`找不到menuCode为${_menu.menuCode}对应的routeMap，请检查路由表`)
+        throw new Error(`找不到name为${_menu.name}对应的routeMap，请检查路由表`)
       }
     }
 
@@ -51,7 +51,7 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
         title: _menu.title,
         path: _menu.path,
         hidden: _menu.hiddenMenu,
-        menuCode: _menu.menuCode
+        name: _menu.name
       }
     ]
 
@@ -60,7 +60,7 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
       const route = {
         id: _menu.id,
         path: _menu.path,
-        menuCode: _menu.menuCode,
+        name: _menu.name,
         componentPath: routeMap.componentPath,
         layout: _menu.layout || routeMap.layout, // 布局
         title: _menu.title,
@@ -81,7 +81,6 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
     }
 
     if (_menu.children?.length) {
-      console.log('_menu.children', _menu.children)
       traverseMenus(
         _menu.children,
         _fullPath,
@@ -111,7 +110,7 @@ export function addRoutes(routes) {
  *
  * @param {Object} route 路由信息
  * @param {String} route.path
- * @param {String} route.menuCode
+ * @param {String} route.name
  * @param {String} route.componentPath
  * @param {Number | undefined} route.id
  * @param {'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'} route.layout
@@ -123,7 +122,7 @@ export function addRoutes(routes) {
 export function generateRoute(route, fullPath) {
   return {
     path: route.path,
-    name: route.menuCode,
+    name: route.name,
     component: () =>
       import(`@/${route.componentPath}`).then((comp) => {
         return comp

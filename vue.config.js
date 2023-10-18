@@ -80,7 +80,6 @@ function resolve(dir) {
 // 生成proxy
 function generateProxy() {
   const proxy = JSON.parse(process.env.VUE_APP_PROXY)
-  console.log('proxy', proxy)
   const result = {}
   for (const k in proxy) {
     const prefix = `/${process.env.VUE_APP_NAME}/${k}`.replace(/\/{2,}/g, '/')

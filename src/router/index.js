@@ -20,7 +20,7 @@ const routes = Object.keys(staticRouteMap).map((routeName) => {
   return generateRoute(
     {
       path: route.path,
-      menuCode: routeName,
+      name: routeName,
       componentPath: route.componentPath,
       layout: route.layout,
       title: route.title,
@@ -49,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       } else {
         if (allRouteMap[to.name]) {
-          // TODO: 判断远程是否有这个menuCode
+          // TODO: 判断远程是否有这个route name
           next('/403')
         } else {
           next('/404')
@@ -67,7 +67,6 @@ router.beforeEach(async (to, from, next) => {
             })
           })
           .catch(() => {
-            console.log('失败')
             next('/login')
           })
       } else {
@@ -77,7 +76,8 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-router.afterEach(() => {
+router.afterEach((to, from) => {
+  store.commit('setViewStack', { to, from })
   NProgress.done()
 })
 

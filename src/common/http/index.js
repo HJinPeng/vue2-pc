@@ -67,10 +67,8 @@ export default function http({
   nativeOptions = {}
 }) {
   if (!/:\/\//.test(url)) {
-    console.log('yes')
     url = `/${process.env.VUE_APP_NAME}/${module}/${url}`.replace(/\/\//g, '/')
   }
-  console.log('url', url)
   const httpParams = {
     method,
     url,
@@ -99,7 +97,6 @@ export default function http({
       return Promise.reject(res)
     })
     .catch((error) => {
-      console.log('error', error)
       if (alert) {
         let description = '未知异常，请联系管理员'
         if ('data' in error) {
@@ -107,7 +104,6 @@ export default function http({
         } else {
           description = error.message
         }
-        console.log('description', description)
         Notification.error({
           message: '系统错误',
           description: description,

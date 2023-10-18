@@ -41,8 +41,7 @@ export default {
       }
       this.loading = true
       this.login(this.model)
-        .then((res) => {
-          console.log('res', res)
+        .then(() => {
           this.$router.push({ name: 'Welcome' })
         })
         .finally(() => {

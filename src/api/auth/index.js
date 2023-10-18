@@ -128,7 +128,23 @@ export function getUserPermissionApi() {
                 keepAlive: false,
                 externalLink: null,
                 status: 'enable',
-                permissionCode: ''
+                permissionCode: '',
+                children: [
+                  {
+                    id: 1121,
+                    title: '用户详情2',
+                    permissionName: '用户详情2',
+                    permissionType: 'menu',
+                    menuCode: 'UserDetail2',
+                    layout: 'LayoutHeaderSidebar',
+                    icon: 'user',
+                    hiddenMenu: true,
+                    keepAlive: false,
+                    externalLink: null,
+                    status: 'enable',
+                    permissionCode: ''
+                  }
+                ]
               }
             ]
           },

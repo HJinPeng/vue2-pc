@@ -3,5 +3,6 @@ export default {
   UserInfo: (state) => state.auth.userInfo,
   Menu: (state) => state.auth.menu,
   AllMenu: (state) => state.auth.allMenu,
-  Roles: (state) => state.auth.userInfo?.roles || []
+  Roles: (state) => state.auth.userInfo?.roles || [],
+  ViewStack: (state) => state.viewStack.viewStack || []
 }

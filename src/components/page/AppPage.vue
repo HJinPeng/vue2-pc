@@ -1,10 +1,6 @@
 <template>
   <div class="app-page">
-    <a-breadcrumb v-if="!hideBreadcrumb" class="app-page__breadcrumb">
-      <a-breadcrumb-item v-for="item in breadcrumbs" :key="item.id">
-        {{ item.title }}
-      </a-breadcrumb-item>
-    </a-breadcrumb>
+    <AppBreadcrumb v-if="!hideBreadcrumb" class="app-page__breadcrumb" />
     <div class="app-page__body">
       <slot />
     </div>
@@ -12,28 +8,14 @@
 </template>
 
 <script>
-import { Breadcrumb } from 'ant-design-vue'
+import AppBreadcrumb from './components/AppBreadcrumb.vue'
 export default {
   props: {
     hideBreadcrumb: Boolean
   },
   components: {
-    [Breadcrumb.name]: Breadcrumb,
-    [Breadcrumb.Item.name]: Breadcrumb.Item
-  },
-  data() {
-    return {
-      breadcrumbs: [{ title: '首页', id: 1 }]
-    }
+    AppBreadcrumb
   }
-  // watch: {
-  //   $route: {
-  //     immediate: true,
-  //     handler(route) {
-  //       this.breadcrumbs = route.meta.fullPath
-  //     }
-  //   }
-  // }
 }
 </script>
 

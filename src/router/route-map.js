@@ -42,8 +42,14 @@ export const dynamicRouteMap = {
   },
   UserDetail: {
     title: '用户详情',
-    path: '/user-detail',
+    path: '/user-detail/:id',
     componentPath: 'views/system/user/UserDetail.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  UserDetail2: {
+    title: '用户详情',
+    path: '/user-detail2/:id',
+    componentPath: 'views/system/user/UserDetail2.vue',
     layout: 'LayoutSidebarHeader'
   }
 }

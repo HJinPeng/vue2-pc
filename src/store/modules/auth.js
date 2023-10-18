@@ -1,4 +1,4 @@
-import { loginApi, getUserPermissionApi, getUserInfoApi } from '@/api/auth'
+import { loginApi, getUserPermissionApi, getUserInfoApi, logoutApi } from '@/api/auth'
 import { setStorageItem } from '@/common/storage'
 import { TOKEN } from '@/common/storage/storage-key'
 import { normalizeMenus, addRoutes } from '@/common/utils/menu-route'
@@ -13,6 +13,7 @@ export default {
   getters: {},
   mutations: {
     setToken(state, token) {
+      setStorageItem(TOKEN, token)
       state.token = token
     },
     setUserInfo(state, userInfo) {
@@ -28,6 +29,7 @@ export default {
       state.token = ''
       state.userInfo = {}
       state.menu = []
+      state.allMenu = {}
     }
   },
   actions: {
@@ -48,7 +50,6 @@ export default {
       const userInfo = await loginApi(payload)
       // 存储token
       commit('setToken', userInfo.token)
-      setStorageItem(TOKEN, userInfo.token)
       delete userInfo.token
       // 存储用户信息
       commit('setUserInfo', userInfo)
@@ -63,7 +64,7 @@ export default {
      * @async
      * @param {{ commit: any; }} param0
      * @param {*} param0.commit
-     * @returns {Promise<Object>}
+     * @returns {Promise}
      */
     async getUserPermission({ commit }) {
       const { menus, permissions } = await getUserPermissionApi()
@@ -75,15 +76,32 @@ export default {
       // 动态添加路由
       addRoutes(routes)
     },
+
+    /**
+     * 根据token获取用户信息
+     * @author jinpengh
+     *
+     * @async
+     * @param {{ commit: any; }} param0
+     * @param {*} param0.commit
+     * @returns {Promise}
+     */
     async getUserInfo({ commit }) {
       const userInfo = await getUserInfoApi()
+      // 存储token
+      commit('setToken', userInfo.token)
       delete userInfo.token
       // 存储用户信息
       commit('setUserInfo', userInfo)
+    },
+
+    /**
+     * 根据token退出登录，并清空store
+     * @param {*} param0
+     */
+    async logout({ dispatch }) {
+      await logoutApi()
+      dispatch('clearStore')
     }
-    // async logout({ dispatch }) {
-    //   await logout()
-    //   dispatch('clearStore')
-    // }
   }
 }

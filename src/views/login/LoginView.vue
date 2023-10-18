@@ -35,6 +35,10 @@ export default {
   methods: {
     ...mapActions(['login']),
     onLogin() {
+      if (!this.model.account || !this.model.password) {
+        this.$message.error('账号密码不能为空')
+        return
+      }
       this.loading = true
       this.login(this.model)
         .then((res) => {

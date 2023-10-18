@@ -6,22 +6,21 @@
         <a-icon type="home" @click="goWelcome" />
       </div>
       <div class="app-header__right">
-        <span class="app-header__docs">说明文档</span>
-        <UserPopover />
+        <AppUserPopover />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import UserPopover from './UserPopover.vue'
+import AppUserPopover from './AppUserPopover.vue'
 export default {
   props: {
     hideLogo: Boolean
   },
   components: {
     AppLogo: () => import('./AppLogo.vue'),
-    UserPopover
+    AppUserPopover
   },
   methods: {
     goWelcome() {
@@ -59,9 +58,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
-  &__docs {
-    margin-right: 24px;
   }
 }
 </style>

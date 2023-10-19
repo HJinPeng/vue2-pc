@@ -25,12 +25,12 @@ export function normalizeMenus(menus) {
  * @author jinpengh
  *
  * @param {Array} menus
- * @param {Array} fullPath 菜单的完整路径
+ * @param {Array} viewPath 菜单的完整路径
  * @param {Object} allMenu 所有菜单的 id:menu
  * @param {Array} sidebarMenus 侧边菜单/侧边菜单的children
  * @param {Array} routes 所有路由
  */
-function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
+function traverseMenus(menus, viewPath, allMenu, sidebarMenus, routes) {
   menus.forEach((menu) => {
     let _menu = { ...menu, title: menu.permissionName, name: menu.menuCode }
     let routeMap
@@ -39,19 +39,21 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
       if (routeMap) {
         _menu.path = routeMap.path
         _menu.title = _menu.title || routeMap.title
+        _menu.layout = _menu.layout || routeMap.layout
       } else {
         throw new Error(`找不到name为${_menu.name}对应的routeMap，请检查路由表`)
       }
     }
 
-    const _fullPath = [
-      ...fullPath,
+    const _viewPath = [
+      ...viewPath,
       {
         id: _menu.id,
         title: _menu.title,
         path: _menu.path,
         hidden: _menu.hiddenMenu,
-        name: _menu.name
+        name: _menu.name,
+        layout: _menu.layout
       }
     ]
 
@@ -62,11 +64,11 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
         path: _menu.path,
         name: _menu.name,
         componentPath: routeMap.componentPath,
-        layout: _menu.layout || routeMap.layout, // 布局
+        layout: _menu.layout, // 布局
         title: _menu.title,
         hidden: _menu.hiddenMenu
       }
-      routes.push(generateRoute(route, _fullPath))
+      routes.push(generateRoute(route, _viewPath))
     }
 
     // 全部菜单
@@ -83,7 +85,7 @@ function traverseMenus(menus, fullPath, allMenu, sidebarMenus, routes) {
     if (_menu.children?.length) {
       traverseMenus(
         _menu.children,
-        _fullPath,
+        _viewPath,
         allMenu,
         sidebarMenusItem ? sidebarMenusItem.children : undefined,
         routes
@@ -116,15 +118,19 @@ export function addRoutes(routes) {
  * @param {'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'} route.layout
  * @param {String} route.title
  * @param {Boolean} route.hiddenMenu
- * @param {Array} fullPath 路由完整路径
- * @returns {{ path: String; name: String; component: () => any; meta: { id: Number; layout: 'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'; title: String; hidden: Boolean; fullPath: Array; }; }}
+ * @param {Array} viewPath 路由完整路径
+ * @returns {{ path: String; name: String; component: () => any; meta: { id: Number; layout: 'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'; title: String; hidden: Boolean; viewPath: Array; }; }}
  */
-export function generateRoute(route, fullPath) {
+export function generateRoute(route, viewPath) {
   return {
     path: route.path,
     name: route.name,
     component: () =>
       import(`@/${route.componentPath}`).then((comp) => {
+        // 如果组件设置了name，和routeMap的key没有对应上，则缓存会失效。若需要对组件设置name，请设置和routeMap对应的同个key
+        if (!comp.default.name) {
+          comp.default.name = route.name
+        }
         return comp
       }),
     meta: {
@@ -132,7 +138,7 @@ export function generateRoute(route, fullPath) {
       layout: route.layout, // 布局
       title: route.title,
       hidden: route.hiddenMenu,
-      fullPath
+      viewPath
     }
   }
 }

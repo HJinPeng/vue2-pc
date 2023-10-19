@@ -1,7 +1,7 @@
 <template>
-  <keep-alive :include="viewStack.layout">
+  <keep-alive :include="cache.layouts">
     <component :is="$route.meta.layout">
-      <keep-alive :include="viewStack.name">
+      <keep-alive :include="cache.names">
         <router-view />
       </keep-alive>
     </component>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   components: {
     LayoutSimple: () => import('./LayoutSimple.vue'),
@@ -17,10 +18,17 @@ export default {
     LayoutSidebarHeader: () => import('./LayoutSidebarHeader.vue')
   },
   computed: {
-    viewStack() {
+    ...mapGetters(['ViewStack']),
+    cache() {
+      const layouts = []
+      const names = []
+      this.ViewStack.forEach((view) => {
+        view.layout && layouts.push(view.layout)
+        view.name && names.push(view.name)
+      })
       return {
-        layout: [],
-        name: []
+        layouts,
+        names
       }
     }
   }

@@ -26,14 +26,14 @@ export default {
     $route: {
       immediate: true,
       handler(route) {
-        const { fullPath = [] } = route.meta
-        this.openKeys = fullPath.reduce((acc, cur) => {
+        const { viewPath = [] } = route.meta
+        this.openKeys = viewPath.reduce((acc, cur) => {
           if (!cur.path) return [...acc, `${cur.id}`]
           return acc
         }, [])
-        for (let i = fullPath.length - 1; i >= 0; i--) {
-          if (!fullPath[i].hidden) {
-            this.selectedKeys = [`${fullPath[i].id}`]
+        for (let i = viewPath.length - 1; i >= 0; i--) {
+          if (!viewPath[i].hidden) {
+            this.selectedKeys = [`${viewPath[i].id}`]
             break
           }
         }
@@ -112,7 +112,6 @@ export default {
   height: 100%;
   overflow: hidden;
   border-right: solid 1px #e6e6e6;
-  // box-shadow: 0 0 4px #e7ebf0;
   &__logo {
     height: 64px;
   }

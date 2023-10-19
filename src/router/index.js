@@ -76,8 +76,8 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-router.afterEach((to, from) => {
-  store.commit('setViewStack', { to, from })
+router.afterEach((to) => {
+  store.commit('setViewStack', to)
   NProgress.done()
 })
 

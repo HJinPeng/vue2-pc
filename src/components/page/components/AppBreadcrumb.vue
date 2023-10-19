@@ -1,7 +1,9 @@
 <template>
   <a-breadcrumb>
-    <a-breadcrumb-item v-for="item in ViewStack" :key="item.name">
-      <router-link v-if="item.clickable" :to="item.fullPath">{{ item.title }}</router-link>
+    <a-breadcrumb-item v-for="(item, index) in ViewStack" :key="item.name">
+      <a v-if="item.clickable && index !== ViewStack.length - 1" @click="goBack(index)">
+        {{ item.title }}
+      </a>
       <span v-else>{{ item.title }}</span>
     </a-breadcrumb-item>
   </a-breadcrumb>
@@ -17,6 +19,11 @@ export default {
   },
   computed: {
     ...mapGetters(['ViewStack'])
+  },
+  methods: {
+    goBack(index) {
+      this.$router.go(-(this.ViewStack.length - (index + 1)))
+    }
   }
 }
 </script>

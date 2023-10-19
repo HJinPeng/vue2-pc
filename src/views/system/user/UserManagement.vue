@@ -6,3 +6,20 @@
     >
   </AppPage>
 </template>
+
+<script>
+export default {
+  created() {
+    console.log('created UserMangement')
+  },
+  mounted() {
+    console.log('mounted UserMangement')
+  },
+  activated() {
+    console.log('activated UserMangement')
+  },
+  deactivated() {
+    console.log('deactivated UserMangement')
+  }
+}
+</script>

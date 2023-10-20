@@ -12,8 +12,8 @@
 .welcome-view {
   .text {
     width: 100px;
-    .hover();
-    .line(2);
+    .mixin-hover();
+    .mixin-line(2);
   }
 }
 </style>

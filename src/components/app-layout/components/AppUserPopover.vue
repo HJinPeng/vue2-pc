@@ -54,7 +54,7 @@ export default {
   &__userinfo {
     display: flex;
     align-items: center;
-    .hover();
+    .mixin-hover();
   }
   &__username {
     margin-right: 6px;
@@ -68,7 +68,7 @@ export default {
   &__content {
     > div {
       text-align: center;
-      .hover();
+      .mixin-hover();
     }
   }
 }

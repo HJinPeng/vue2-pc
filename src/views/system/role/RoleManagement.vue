@@ -1,7 +1,10 @@
 <template>
   <AppPage>
     <BaseCard>
-      <div>basecard</div>
+      <BaseSearch :disabled="loading" @search="onSearch" @reset="onReset">
+        <a-input placeholder="请输入角色名称"></a-input>
+        <a-input placeholder="请输入角色名称" style="width: 300px"></a-input>
+      </BaseSearch>
     </BaseCard>
     <BaseCard title="角色管理">
       <template #extra>
@@ -23,5 +26,27 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      loading: false
+    }
+  },
+  methods: {
+    onSearch() {
+      console.log('onSearch')
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 3000)
+    },
+    onReset() {
+      console.log('onReset')
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 3000)
+    }
+  }
+}
 </script>

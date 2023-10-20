@@ -30,11 +30,8 @@ export default {
   }
   &__body {
     flex: 1;
-    padding: 16px;
+    padding: 1px;
     overflow: auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 4px #edf0f4;
   }
 }
 </style>

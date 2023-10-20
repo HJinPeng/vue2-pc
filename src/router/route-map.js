@@ -34,6 +34,12 @@ export const dynamicRouteMap = {
     componentPath: 'views/system/user/UserManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
+  RoleManagement: {
+    title: '角色管理',
+    path: '/role-management',
+    componentPath: 'views/system/role/RoleManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
   DictManagement: {
     title: '字典管理',
     path: '/dict-management',

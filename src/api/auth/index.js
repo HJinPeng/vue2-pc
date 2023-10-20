@@ -149,6 +149,19 @@ export function getUserPermissionApi() {
             ]
           },
           {
+            id: 14,
+            permissionName: '角色管理',
+            permissionType: 'menu',
+            menuCode: 'RoleManagement',
+            layout: 'LayoutHeaderSidebar',
+            icon: 'crown',
+            hiddenMenu: null,
+            keepAlive: false,
+            externalLink: null,
+            status: 'enable',
+            permissionCode: ''
+          },
+          {
             id: 13,
             title: '字典管理',
             permissionName: '字典管理',

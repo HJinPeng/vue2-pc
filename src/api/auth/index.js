@@ -103,6 +103,19 @@ export function getUserPermissionApi() {
         status: 'enable',
         children: [
           {
+            id: 18,
+            permissionName: '菜单管理',
+            permissionType: 'menu',
+            menuCode: 'MenuManagement',
+            layout: 'LayoutHeaderSidebar',
+            icon: 'menu',
+            hiddenMenu: null,
+            keepAlive: true,
+            externalLink: null,
+            status: 'enable',
+            permissionCode: ''
+          },
+          {
             id: 11,
             title: '用户管理',
             permissionName: '用户管理',

@@ -28,6 +28,12 @@ export const staticRouteMap = {
 
 // 动态路由映射表
 export const dynamicRouteMap = {
+  MenuManagement: {
+    title: '菜单管理',
+    path: '/menu-management',
+    componentPath: 'views/system/menu/MenuManagement.vue',
+    layout: 'LayoutSidebarHeader'
+  },
   UserManagement: {
     title: '用户管理',
     path: '/user-management',

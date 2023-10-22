@@ -2,21 +2,11 @@
   <AppPage>
     <BaseCard>
       <BaseSearch :disabled="loading" @search="onSearch" @reset="onReset">
-        <a-input placeholder="请输入角色名称"></a-input>
-        <a-input placeholder="请输入角色名称" style="width: 300px"></a-input>
+        <a-input placeholder="菜单名称"></a-input>
+        <a-input placeholder="组件名称"></a-input>
       </BaseSearch>
     </BaseCard>
-    <BaseCard title="角色管理">
-      <template #extra>
-        <a-button type="primary">新增</a-button>
-      </template>
-      <div>basecard2</div>
-    </BaseCard>
-
-    <BaseCard style="height: 1700px">
-      <template #title>
-        <a-button type="primary">新增</a-button>
-      </template>
+    <BaseCard title="菜单管理">
       <template #extra>
         <a-button type="primary">新增</a-button>
       </template>

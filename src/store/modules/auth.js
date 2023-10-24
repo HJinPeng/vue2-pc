@@ -88,9 +88,6 @@ export default {
      */
     async getUserInfo({ commit }) {
       const userInfo = await getUserInfoApi()
-      // 存储token
-      commit('setToken', userInfo.token)
-      delete userInfo.token
       // 存储用户信息
       commit('setUserInfo', userInfo)
     },

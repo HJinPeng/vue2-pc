@@ -9,71 +9,76 @@ import http from '@/common/http'
  * @param {String} params.password 密码
  * @returns {Promise<Object>}
  */
-export function loginApi(params) {
+export function loginApi(data) {
   // return http({
   //   url: 'base/user/auth/login',
   //   params,
   //   module: 'mock'
   // })
-  return Promise.resolve({
-    phone: '18149511205',
-    oaStatus: 'aute culpa laboris in ad',
-    birthday: '1992-02-18',
-    account: 'velit',
-    roles: [
-      {
-        deleted: true,
-        comment: 'irure in voluptate',
-        status: 'deserunt Ut consectetur',
-        id: 49,
-        updateByName: '心大严义取干',
-        roleName: '回空局织',
-        updateDateTime: '1994-08-28 18:09:01',
-        updateBy: 'officia aliqua Lorem in',
-        roleCode: '14',
-        createDateTime: '2020-06-09 11:01:43',
-        createBy: 'quis dolore',
-        createByName: '她系拉一件位难'
-      },
-      {
-        updateBy: 'laborum sed ea',
-        status: 'laborum qui velit proident',
-        updateByName: '长式么',
-        createDateTime: '2021-06-03 05:36:52',
-        comment: 'aute',
-        deleted: false,
-        updateDateTime: '2004-10-20 04:57:58',
-        createByName: '数照马经',
-        id: 4,
-        roleCode: '38',
-        roleName: '民些分想维',
-        createBy: 'minim anim consequat occaecat exercitation'
-      },
-      {
-        comment: 'proident',
-        updateBy: 'Ut laborum fugiat nulla eiusmod',
-        updateByName: '前石整处作',
-        createByName: '们产己省包再光',
-        createDateTime: '2012-09-27 05:20:35',
-        id: 42,
-        roleCode: '6',
-        status: 'laboris commodo nostrud velit laborum',
-        createBy: 'cillum labore',
-        deleted: false,
-        updateDateTime: '2016-06-19 20:40:28',
-        roleName: '的技情'
-      }
-    ],
-    organizationCode: '17',
-    id: 55,
-    email: 'n.texhc@qq.com',
-    realname: '参用华专调',
-    token: 'sunt anim culpa eiusmod',
-    organizationName: '话回较因划',
-    status: 27,
-    profilePhoto: 'http://dummyimage.com/400x400',
-    sex: 97
+  return http({
+    url: '/login',
+    method: 'post',
+    data
   })
+  // return Promise.resolve({
+  //   phone: '18149511205',
+  //   oaStatus: 'aute culpa laboris in ad',
+  //   birthday: '1992-02-18',
+  //   account: 'velit',
+  //   roles: [
+  //     {
+  //       deleted: true,
+  //       comment: 'irure in voluptate',
+  //       status: 'deserunt Ut consectetur',
+  //       id: 49,
+  //       updateByName: '心大严义取干',
+  //       roleName: '回空局织',
+  //       updateDateTime: '1994-08-28 18:09:01',
+  //       updateBy: 'officia aliqua Lorem in',
+  //       roleCode: '14',
+  //       createDateTime: '2020-06-09 11:01:43',
+  //       createBy: 'quis dolore',
+  //       createByName: '她系拉一件位难'
+  //     },
+  //     {
+  //       updateBy: 'laborum sed ea',
+  //       status: 'laborum qui velit proident',
+  //       updateByName: '长式么',
+  //       createDateTime: '2021-06-03 05:36:52',
+  //       comment: 'aute',
+  //       deleted: false,
+  //       updateDateTime: '2004-10-20 04:57:58',
+  //       createByName: '数照马经',
+  //       id: 4,
+  //       roleCode: '38',
+  //       roleName: '民些分想维',
+  //       createBy: 'minim anim consequat occaecat exercitation'
+  //     },
+  //     {
+  //       comment: 'proident',
+  //       updateBy: 'Ut laborum fugiat nulla eiusmod',
+  //       updateByName: '前石整处作',
+  //       createByName: '们产己省包再光',
+  //       createDateTime: '2012-09-27 05:20:35',
+  //       id: 42,
+  //       roleCode: '6',
+  //       status: 'laboris commodo nostrud velit laborum',
+  //       createBy: 'cillum labore',
+  //       deleted: false,
+  //       updateDateTime: '2016-06-19 20:40:28',
+  //       roleName: '的技情'
+  //     }
+  //   ],
+  //   organizationCode: '17',
+  //   id: 55,
+  //   email: 'n.texhc@qq.com',
+  //   realname: '参用华专调',
+  //   token: 'sunt anim culpa eiusmod',
+  //   organizationName: '话回较因划',
+  //   status: 27,
+  //   profilePhoto: 'http://dummyimage.com/400x400',
+  //   sex: 97
+  // })
 }
 
 /**
@@ -86,6 +91,7 @@ export function getUserPermissionApi() {
   // return http({
   //   url: '/base/permission/queryUserMenuPermission'
   // })
+
   return Promise.resolve({
     menus: [
       {
@@ -188,37 +194,40 @@ export function getUserInfoApi() {
   //   url: '/base/user/auth/getLoginUser',
   //   module: 'mock'
   // })
-  return Promise.resolve({
-    organizationName: '正就清',
-    email: 'g.eitutlbow@qq.com',
-    realname: '参用华专调',
-    roles: [
-      {
-        updateBy: 'magna',
-        deleted: true,
-        createByName: '口适完',
-        updateDateTime: '2018-04-28 04:17:26',
-        updateByName: '目共别其见',
-        status: 'Excepteur exercitation tempor laboris est',
-        roleCode: '9',
-        createBy: 'minim anim ex',
-        roleName: '管理员',
-        id: 8,
-        comment: 'adipisicing',
-        createDateTime: '2003-10-14 04:58:59'
-      }
-    ],
-    account: 'admin',
-    phone: '18172317172',
-    id: 18,
-    token: 'sdlfkjasdfjalnasndfasjdlkfjslkfjslkdjfsd',
-    sex: 85,
-    birthday: '1989-09-28',
-    status: 1,
-    profilePhoto: 'http://dummyimage.com/400x400',
-    oaStatus: 'nostrud',
-    organizationCode: '77'
+  return http({
+    url: '/getUserInfo'
   })
+  // return Promise.resolve({
+  //   organizationName: '正就清',
+  //   email: 'g.eitutlbow@qq.com',
+  //   realname: '参用华专调',
+  //   roles: [
+  //     {
+  //       updateBy: 'magna',
+  //       deleted: true,
+  //       createByName: '口适完',
+  //       updateDateTime: '2018-04-28 04:17:26',
+  //       updateByName: '目共别其见',
+  //       status: 'Excepteur exercitation tempor laboris est',
+  //       roleCode: '9',
+  //       createBy: 'minim anim ex',
+  //       roleName: '管理员',
+  //       id: 8,
+  //       comment: 'adipisicing',
+  //       createDateTime: '2003-10-14 04:58:59'
+  //     }
+  //   ],
+  //   account: 'admin',
+  //   phone: '18172317172',
+  //   id: 18,
+  //   token: 'sdlfkjasdfjalnasndfasjdlkfjslkfjslkdjfsd',
+  //   sex: 85,
+  //   birthday: '1989-09-28',
+  //   status: 1,
+  //   profilePhoto: 'http://dummyimage.com/400x400',
+  //   oaStatus: 'nostrud',
+  //   organizationCode: '77'
+  // })
 }
 
 /**

@@ -31,6 +31,8 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import UserModal from './UserModal.vue'
+import { getUserPageApi } from '@/api/user'
+
 export default {
   mixins: [mixinTable],
   components: { UserModal },
@@ -88,12 +90,21 @@ export default {
     fetchPage_mx_table() {
       console.log('获取列表数据')
       this.loading_mx_table = true
-      setTimeout(() => {
-        this.dataSource_mx_table = [
-          { id: 1, account: 'admin', realname: '管理员', role: '超级管理员', status: '正常' }
-        ]
-        this.loading_mx_table = false
-      }, 1000)
+      getUserPageApi({
+        ...this.params_mx_table,
+        pageNo: this.pagination_mx_table.current,
+        pageSize: this.pagination_mx_table.pageSize,
+        orderBy: 'create_date_time',
+        isAsc: false
+      })
+        .then((res) => {
+          console.log('res', res)
+          this.dataSource_mx_table = res.records
+          this.pagination_mx_table.total = res.total
+        })
+        .finally(() => {
+          this.loading_mx_table = false
+        })
     },
     // Overwrite 初始化查询参数
     initParams_mx_table() {

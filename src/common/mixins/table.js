@@ -8,7 +8,7 @@ export default {
       pagination_mx_table: {
         current: 1,
         pageSize: 10,
-        total: 100,
+        total: 0,
         showQuickJumper: true,
         showSizeChanger: true,
         showTotal: (total) => `共 ${total} 条数据`

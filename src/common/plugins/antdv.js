@@ -1,6 +1,16 @@
-import { Button, Select, Input, Icon, Modal, message, notification } from 'ant-design-vue'
+import {
+  Button,
+  Select,
+  Input,
+  Icon,
+  Modal,
+  Table,
+  FormModel,
+  message,
+  notification
+} from 'ant-design-vue'
 
-const components = [Button, Select, Input, Icon, Modal]
+const components = [Button, Select, Input, Icon, Modal, Table, FormModel]
 
 const antdv = {
   install: (Vue) => {

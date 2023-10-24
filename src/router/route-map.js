@@ -20,7 +20,7 @@ export const staticRouteMap = {
   },
   403: {
     title: '没有权限访问该资源',
-    path: '/404',
+    path: '/403',
     componentPath: 'views/exceptions/NoPermission.vue',
     layout: 'LayoutSimple'
   }
@@ -54,14 +54,8 @@ export const dynamicRouteMap = {
   },
   UserDetail: {
     title: '用户详情',
-    path: '/user-detail/:id',
+    path: '/user-detail',
     componentPath: 'views/system/user/UserDetail.vue',
-    layout: 'LayoutSidebarHeader'
-  },
-  UserDetail2: {
-    title: '用户详情',
-    path: '/user-detail2/:id',
-    componentPath: 'views/system/user/UserDetail2.vue',
     layout: 'LayoutSidebarHeader'
   }
 }

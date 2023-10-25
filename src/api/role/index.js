@@ -1,64 +1,65 @@
 import http from '@/common/http'
 
 /**
- * 获取用户分页列表
+ * 获取角色分页列表
  * @author jinpengh
  *
  * @param {Object} params
- * @param {String} params.account 账号
- * @param {String} params.realname 用户名
+ * @param {String} params.roleCode 角色编码
+ * @param {String} params.roleName 角色名称
  * @returns {*}
  */
-export function getUserPageApi(params) {
+export function getRolePageApi(params) {
   return http({
-    url: '/user/page',
+    url: '/role/page',
     params
   })
 }
 
 /**
- * 添加用户
+ * 添加角色
  * @author jinpengh
  *
  * @export
  * @param {Object} data
- * @param {String} data.account
- * @param {String} data.realname
+ * @param {String} data.roleCode
+ * @param {String} data.roleName
  * @returns {*}
  */
-export function addUserApi(data) {
+export function addRoleApi(data) {
   return http({
-    url: '/user/add',
+    url: '/role/add',
     method: 'post',
     data
   })
 }
 
 /**
- * 编辑用户
+ * 编辑角色
  * @author jinpengh
  *
  * @export
  * @param {Object} data
+ * @param {String} data.realCode
  * @param {String} data.realname
  * @returns {*}
  */
-export function editUserApi(data) {
+export function editRoleApi(data) {
   return http({
-    url: '/user/edit',
+    url: '/role/edit',
     method: 'put',
     data
   })
 }
 
 /**
- * 通过id删除用户
+ * 通过id删除角色
  * @param {Number} id
  * @returns
  */
-export function deleteUserByIdApi(id) {
+export function deleteRoleByIdApi(id) {
   return http({
-    url: '/user/delete/' + id,
+    url: '/role/delete/' + id,
     method: 'delete'
   })
 }

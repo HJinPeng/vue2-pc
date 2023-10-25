@@ -13,18 +13,18 @@
       :label-col="{ span: 4 }"
       :wrapper-col="{ span: 18 }"
     >
-      <a-form-model-item label="账号" prop="account">
-        <a-input v-model="model.account" :disabled="action === 'edit'" placeholder="请输入账号" />
+      <a-form-model-item label="角色编码" prop="roleCode">
+        <a-input v-model="model.roleCode" placeholder="请输入角色编码" />
       </a-form-model-item>
-      <a-form-model-item label="用户名" prop="realname">
-        <a-input v-model="model.realname" placeholder="请输入用户名" />
+      <a-form-model-item label="角色名称" prop="roleName">
+        <a-input v-model="model.roleName" placeholder="请输入角色名称" />
       </a-form-model-item>
     </a-form-model>
   </a-modal>
 </template>
 
 <script>
-import { addUserApi, editUserApi } from '@/api/user'
+import { addRoleApi, editRoleApi } from '@/api/role'
 export default {
   data() {
     return {
@@ -33,20 +33,20 @@ export default {
       action: 'add', // 'add' | 'edit'
       model: this.initModel(),
       rules: Object.freeze({
-        account: [
-          { required: true, message: '账号不能为空', trigger: 'blur' },
-          { max: 20, message: '账号不超过20个字', trigger: 'blur' }
+        roleCode: [
+          { required: true, message: '角色编码不能为空', trigger: 'blur' },
+          { max: 20, message: '角色编码不超过20个字', trigger: 'blur' }
         ],
-        realname: [
-          { required: true, message: '用户名不能为空', trigger: 'blur' },
-          { max: 20, message: '用户名不超过20个字符', trigger: 'blur' }
+        roleName: [
+          { required: true, message: '角色名称不能为空', trigger: 'blur' },
+          { max: 20, message: '角色名称不超过20个字符', trigger: 'blur' }
         ]
       })
     }
   },
   computed: {
     title() {
-      return `${this.action === 'edit' ? '编辑' : '新增'}用户`
+      return `${this.action === 'edit' ? '编辑' : '新增'}角色`
     }
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
         if (valid) {
           console.log('校验通过')
           this.confirmLoading = true
-          const fn = this.action === 'add' ? addUserApi : editUserApi
+          const fn = this.action === 'add' ? addRoleApi : editRoleApi
           fn(this.model)
             .then(() => {
               this.$emit('ok')
@@ -88,8 +88,8 @@ export default {
     // 初始化数据
     initModel() {
       return {
-        account: undefined,
-        realname: undefined
+        roleCode: undefined,
+        roleName: undefined
       }
     }
   }

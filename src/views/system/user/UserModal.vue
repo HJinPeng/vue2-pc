@@ -14,7 +14,7 @@
       :wrapper-col="{ span: 18 }"
     >
       <a-form-model-item label="账号" prop="account">
-        <a-input v-model="model.account" placeholder="请输入账号" />
+        <a-input v-model="model.account" :disabled="action === 'edit'" placeholder="请输入账号" />
       </a-form-model-item>
       <a-form-model-item label="用户名" prop="realname">
         <a-input v-model="model.realname" placeholder="请输入用户名" />
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { addUserApi } from '@/api/user'
 export default {
   data() {
     return {
@@ -65,11 +66,14 @@ export default {
         if (valid) {
           console.log('校验通过')
           this.confirmLoading = true
-          setTimeout(() => {
-            this.$emit('ok')
-            this.confirmLoading = false
-            this.onCancel()
-          }, 3000)
+          addUserApi(this.model)
+            .then(() => {
+              this.$emit('ok')
+              this.onCancel()
+            })
+            .finally(() => {
+              this.confirmLoading = false
+            })
         }
       })
     },

@@ -42,7 +42,7 @@ function defaultExtractData(resData, res) {
  * @author jinpengh
  *
  * @param {Object} param0
- * @param {String} [param0.method='get']  请求方法
+ * @param {'get' | 'post' | 'delete' | 'put'} [param0.method='get']  请求方法
  * @param {Object} param0.params  query请求参数
  * @param {Object} param0.data  body请求参数
  * @param {String} param0.url  地址

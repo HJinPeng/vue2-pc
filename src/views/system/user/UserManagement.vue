@@ -6,8 +6,16 @@
         @search="onSearch_mx_table"
         @reset="onReset_mx_table"
       >
-        <a-input v-model="params_mx_table.account" placeholder="账号"></a-input>
-        <a-input v-model="params_mx_table.realname" placeholder="用户名"></a-input>
+        <a-input
+          v-model="params_mx_table.account"
+          placeholder="账号"
+          @pressEnter="onSearch_mx_table"
+        ></a-input>
+        <a-input
+          v-model="params_mx_table.realname"
+          placeholder="用户名"
+          @pressEnter="onSearch_mx_table"
+        ></a-input>
       </BaseSearch>
     </BaseCard>
     <BaseCard title="用户列表">
@@ -31,7 +39,7 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import UserModal from './UserModal.vue'
-import { getUserPageApi } from '@/api/user'
+import { getUserPageApi, deleteUserByIdApi } from '@/api/user'
 
 export default {
   mixins: [mixinTable],
@@ -76,12 +84,9 @@ export default {
         title: '删除',
         content: `确认删除用户 “${record.realname}” 吗？`,
         onOk: () => {
-          return new Promise((resolve, reject) => {
-            setTimeout(() => {
-              resolve()
-              this.$message.success('删除成功')
-              this.fetchPage_mx_table()
-            }, 1000)
+          return deleteUserByIdApi(record.id).then(() => {
+            this.$message.success('删除成功')
+            this.fetchPage_mx_table()
           })
         }
       })
@@ -93,9 +98,7 @@ export default {
       getUserPageApi({
         ...this.params_mx_table,
         pageNo: this.pagination_mx_table.current,
-        pageSize: this.pagination_mx_table.pageSize,
-        orderBy: 'create_date_time',
-        isAsc: false
+        pageSize: this.pagination_mx_table.pageSize
       })
         .then((res) => {
           console.log('res', res)

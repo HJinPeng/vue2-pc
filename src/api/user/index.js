@@ -15,3 +15,33 @@ export function getUserPageApi(params) {
     params
   })
 }
+
+/**
+ * 添加用户
+ * @author jinpengh
+ *
+ * @export
+ * @param {Object} data
+ * @param {String} data.account
+ * @param {String} data.realname
+ * @returns {*}
+ */
+export function addUserApi(data) {
+  return http({
+    url: '/user/add',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 通过id删除用户
+ * @param {Number} id
+ * @returns
+ */
+export function deleteUserByIdApi(id) {
+  return http({
+    url: '/user/delete/' + id,
+    method: 'delete'
+  })
+}

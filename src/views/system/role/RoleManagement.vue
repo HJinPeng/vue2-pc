@@ -49,6 +49,8 @@ export default {
       columns_mx_table: Object.freeze([
         { title: '角色编码', dataIndex: 'roleCode' },
         { title: '角色名称', dataIndex: 'roleName' },
+        { title: '创建人', dataIndex: 'createByName' },
+        { title: '创建时间', dataIndex: 'createDateTime' },
         { title: '状态', dataIndex: 'status' },
         {
           title: '操作',

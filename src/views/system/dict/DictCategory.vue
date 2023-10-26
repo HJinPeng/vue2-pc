@@ -9,12 +9,14 @@
         <a-input
           v-model="params_mx_table.dictCode"
           placeholder="字典编码"
+          allow-clear
           style="width: 140px"
           @pressEnter="onSearch_mx_table"
         ></a-input>
         <a-input
           v-model="params_mx_table.dictName"
           placeholder="字典名称"
+          allow-clear
           style="width: 150px"
           @pressEnter="onSearch_mx_table"
         ></a-input>
@@ -90,6 +92,10 @@ export default {
         onOk: () => {
           return deleteDictByIdApi(record.id).then(() => {
             this.$message.success('删除成功')
+            // 当前页数据删完了，页码-1
+            this.computePageNo_mx_table(record.id)
+            // 删除了当前选中行，条目表要清空
+            this.selectRow()
             this.fetchPage_mx_table()
           })
         }
@@ -112,7 +118,7 @@ export default {
       return record.id === this.activeId ? 'dict-category__row--active' : ''
     },
     selectRow(row) {
-      this.activeId = row.id
+      this.activeId = row?.id
       this.$emit('select', row)
     },
     // Overwrite 获取分页数据

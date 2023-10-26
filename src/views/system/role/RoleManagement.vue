@@ -9,11 +9,13 @@
         <a-input
           v-model="params_mx_table.roleCode"
           placeholder="角色编码"
+          allow-clear
           @pressEnter="onSearch_mx_table"
         ></a-input>
         <a-input
           v-model="params_mx_table.roleName"
           placeholder="角色名称"
+          allow-clear
           @pressEnter="onSearch_mx_table"
         ></a-input>
       </BaseSearch>
@@ -87,6 +89,8 @@ export default {
         onOk: () => {
           return deleteRoleByIdApi(record.id).then(() => {
             this.$message.success('删除成功')
+            // 当前页数据删完了，页码-1
+            this.computePageNo_mx_table(record.id)
             this.fetchPage_mx_table()
           })
         }

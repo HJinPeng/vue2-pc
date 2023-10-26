@@ -1,3 +1,5 @@
+import { computePageNo } from '@/common/utils/tool'
+
 export default {
   data() {
     return {
@@ -33,6 +35,15 @@ export default {
     // Overwrite - 初始化参数
     initParams_mx_table() {
       return {}
+    },
+
+    // 删除时计算分页页码
+    computePageNo_mx_table(deleteIds) {
+      this.pagination_mx_table.current = computePageNo(
+        deleteIds,
+        this.dataSource_mx_table,
+        this.pagination_mx_table.current
+      )
     },
 
     // 点击搜索按钮

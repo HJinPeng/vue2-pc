@@ -9,12 +9,14 @@
         <a-input
           v-model="params_mx_table.dictItemCode"
           placeholder="条目编码"
+          allow-clear
           style="width: 140px"
           @pressEnter="onSearch_mx_table"
         ></a-input>
         <a-input
           v-model="params_mx_table.dictItemName"
           placeholder="条目名称"
+          allow-clear
           style="width: 150px"
           @pressEnter="onSearch_mx_table"
         ></a-input>
@@ -106,6 +108,8 @@ export default {
         onOk: () => {
           return deleteDictItemByIdApi(record.id).then(() => {
             this.$message.success('删除成功')
+            // 当前页数据删完了，页码-1
+            this.computePageNo_mx_table(record.id)
             this.fetchPage_mx_table()
           })
         }

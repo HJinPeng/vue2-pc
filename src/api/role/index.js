@@ -7,6 +7,7 @@ import http from '@/common/http'
  * @param {Object} params
  * @param {String} params.roleCode 角色编码
  * @param {String} params.roleName 角色名称
+ * @param {String} params.status 状态
  * @returns {*}
  */
 export function getRolePageApi(params) {

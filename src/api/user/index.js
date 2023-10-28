@@ -7,6 +7,7 @@ import http from '@/common/http'
  * @param {Object} params
  * @param {String} params.account 账号
  * @param {String} params.realname 用户名
+ * @param {String} params.status 状态
  * @returns {*}
  */
 export function getUserPageApi(params) {

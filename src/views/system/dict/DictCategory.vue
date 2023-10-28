@@ -7,19 +7,27 @@
         @reset="onReset_mx_table"
       >
         <a-input
-          v-model="params_mx_table.dictCode"
-          placeholder="字典编码"
-          allow-clear
-          style="width: 140px"
-          @pressEnter="onSearch_mx_table"
-        ></a-input>
-        <a-input
           v-model="params_mx_table.dictName"
           placeholder="字典名称"
           allow-clear
           style="width: 150px"
           @pressEnter="onSearch_mx_table"
         ></a-input>
+        <a-input
+          v-model="params_mx_table.dictCode"
+          placeholder="字典编码"
+          allow-clear
+          style="width: 140px"
+          @pressEnter="onSearch_mx_table"
+        ></a-input>
+        <BaseDict
+          v-model="params_mx_table.status"
+          dict-code="on-off"
+          type="select"
+          placeholder="状态"
+          allow-clear
+          style="width: 100px"
+        />
       </BaseSearch>
     </BaseCard>
     <BaseCard title="字典列表">
@@ -52,10 +60,16 @@ export default {
   components: { DictCategoryModal },
   data() {
     return {
+      // 该页需要用到的字典
+      dictCodeArr_mx_table: ['on-off'],
       columns_mx_table: Object.freeze([
-        { title: '字典编码', dataIndex: 'dictCode' },
         { title: '字典名称', dataIndex: 'dictName' },
-        { title: '状态', dataIndex: 'status' },
+        { title: '字典编码', dataIndex: 'dictCode' },
+        {
+          title: '状态',
+          dataIndex: 'status',
+          customRender: (text) => this.translate_mx_table('on-off', text)
+        },
         {
           title: '操作',
           dataIndex: 'id',
@@ -123,7 +137,6 @@ export default {
     },
     // Overwrite 获取分页数据
     fetchPage_mx_table() {
-      console.log('获取列表数据')
       this.loading_mx_table = true
       getDictPageApi({
         ...this.params_mx_table,
@@ -143,7 +156,8 @@ export default {
     initParams_mx_table() {
       return {
         dictCode: undefined,
-        dictName: undefined
+        dictName: undefined,
+        status: undefined
       }
     }
   }

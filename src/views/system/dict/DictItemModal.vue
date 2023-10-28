@@ -13,11 +13,14 @@
       :label-col="{ span: 4 }"
       :wrapper-col="{ span: 18 }"
     >
+      <a-form-model-item label="条目名称" prop="dictItemName">
+        <a-input v-model="model.dictItemName" placeholder="请输入条目名称" />
+      </a-form-model-item>
       <a-form-model-item label="条目编码" prop="dictItemCode">
         <a-input v-model="model.dictItemCode" placeholder="请输入条目编码" />
       </a-form-model-item>
-      <a-form-model-item label="条目名称" prop="dictItemName">
-        <a-input v-model="model.dictItemName" placeholder="请输入条目名称" />
+      <a-form-model-item label="状态" prop="status">
+        <BaseDict v-model="model.status" dict-code="on-off" type="radio" />
       </a-form-model-item>
       <a-form-model-item label="排序">
         <a-input-number v-model="model.sort" placeholder="序号" />
@@ -103,7 +106,8 @@ export default {
       return {
         dictItemCode: undefined,
         dictItemName: undefined,
-        sort: undefined
+        sort: undefined,
+        status: undefined
       }
     }
   }

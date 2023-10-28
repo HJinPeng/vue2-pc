@@ -1,4 +1,5 @@
 import { computePageNo } from '@/common/utils/tool'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
@@ -17,18 +18,28 @@ export default {
       }
     }
   },
-  mounted() {
-    this._first_enter_mx_table = true
+  computed: {
+    ...mapGetters({
+      translate_mx_table: 'Translate'
+    })
+  },
+  async mounted() {
+    // 用于记录第一次进入页面，后续通过activated进入则是false
+    this.first_enter_mx_table = true
+    // 该页需要用到的字典
+    this.dictCodeArr_mx_table?.length && (await this.getDicts(this.dictCodeArr_mx_table))
+    // 请求分页数据
     this.fetchPage_mx_table()
   },
   activated() {
-    if (this._first_enter_mx_table === true) {
-      this._first_enter_mx_table = false
+    if (this.first_enter_mx_table === true) {
+      this.first_enter_mx_table = false
       return
     }
     this.fetchPage_mx_table()
   },
   methods: {
+    ...mapActions(['getDicts']),
     // Overwrite - 数据请求
     fetchPage_mx_table() {},
 

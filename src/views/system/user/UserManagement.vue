@@ -18,6 +18,13 @@
           allow-clear
           @pressEnter="onSearch_mx_table"
         ></a-input>
+        <BaseDict
+          v-model="params_mx_table.status"
+          dict-code="on-off"
+          type="select"
+          placeholder="状态"
+          allow-clear
+        />
       </BaseSearch>
     </BaseCard>
     <BaseCard title="用户列表">
@@ -48,13 +55,19 @@ export default {
   components: { UserModal },
   data() {
     return {
+      // 该页需要用到的字典
+      dictCodeArr_mx_table: ['on-off'],
       columns_mx_table: Object.freeze([
         { title: '账号', dataIndex: 'account' },
         { title: '用户名', dataIndex: 'realname' },
         { title: '角色', dataIndex: 'role' },
         { title: '创建人', dataIndex: 'createByName' },
         { title: '创建时间', dataIndex: 'createDateTime' },
-        { title: '状态', dataIndex: 'status' },
+        {
+          title: '状态',
+          dataIndex: 'status',
+          customRender: (text) => this.translate_mx_table('on-off', text)
+        },
         {
           title: '操作',
           dataIndex: 'id',
@@ -119,7 +132,8 @@ export default {
     initParams_mx_table() {
       return {
         account: undefined,
-        realname: undefined
+        realname: undefined,
+        status: undefined
       }
     }
   }

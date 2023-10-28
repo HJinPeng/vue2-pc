@@ -8,6 +8,7 @@ import http from '@/common/http'
  * @param {String} params.dictId 字典id
  * @param {String} params.dictItemCode 字典条目编码
  * @param {String} params.dictItemName 字典条目名称
+ * @param {String} params.status 状态
  * @returns {*}
  */
 export function getDictItemPageApi(params) {
@@ -25,6 +26,8 @@ export function getDictItemPageApi(params) {
  * @param {Object} data
  * @param {String} data.dictItemCode
  * @param {String} data.dictItemName
+ * @param {String} params.sort 排序
+ * @param {String} params.status 状态
  * @returns {*}
  */
 export function addDictItemApi(data) {
@@ -43,6 +46,8 @@ export function addDictItemApi(data) {
  * @param {Object} data
  * @param {String} data.realCode
  * @param {String} data.realname
+ * @param {String} params.sort 排序
+ * @param {String} params.status 状态
  * @returns {*}
  */
 export function editDictItemApi(data) {

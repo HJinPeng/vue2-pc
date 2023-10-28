@@ -4,5 +4,6 @@ export default {
   Menu: (state) => state.auth.menu,
   AllMenu: (state) => state.auth.allMenu,
   Roles: (state) => state.auth.userInfo?.roles || [],
-  ViewStack: (state) => state.viewStack.viewStack || []
+  ViewStack: (state) => state.viewStack.viewStack || [],
+  Translate: (state, getters) => getters.translateDictItem
 }

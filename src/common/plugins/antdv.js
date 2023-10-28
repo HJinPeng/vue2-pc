@@ -6,11 +6,13 @@ import {
   Modal,
   Table,
   FormModel,
+  Radio,
+  Checkbox,
   message,
   notification
 } from 'ant-design-vue'
 
-const components = [Button, Select, Input, Icon, Modal, Table, FormModel]
+const components = [Button, Select, Input, Icon, Modal, Table, FormModel, Radio, Checkbox]
 
 const antdv = {
   install: (Vue) => {

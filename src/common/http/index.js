@@ -5,6 +5,7 @@ import signMd5 from './sign-md5'
 import store from '@/store'
 
 import { Notification } from 'ant-design-vue'
+import router from '@/router'
 
 // axios实例
 const instance = axios.create({
@@ -110,8 +111,12 @@ export default function http({
           duration: 3
         })
       }
-      // todo: 添加回到登录页的逻辑
-
+      // 登录超时
+      if (error.data.code === 401) {
+        store.dispatch('logout', false)
+        const redirect = location.href.replace(location.origin, '')
+        router.push({ name: 'Login', query: { redirect } })
+      }
       return Promise.reject(error)
     })
 }

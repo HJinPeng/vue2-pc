@@ -42,7 +42,8 @@ export default {
       this.loading = true
       this.login(this.model)
         .then(() => {
-          this.$router.push({ name: 'Welcome' })
+          const redirect = this.$route.query.redirect
+          this.$router.push(redirect ? redirect : { name: 'Welcome' })
         })
         .finally(() => {
           this.loading = false

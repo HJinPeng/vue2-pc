@@ -96,8 +96,8 @@ export default {
      * 根据token退出登录，并清空store
      * @param {*} param0
      */
-    async logout({ dispatch }) {
-      await logoutApi()
+    async logout({ dispatch }, needRequest = true) {
+      needRequest && (await logoutApi())
       dispatch('clearStore')
     }
   }

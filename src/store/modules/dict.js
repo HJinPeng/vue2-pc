@@ -1,4 +1,4 @@
-import { getDictByCodeApi, getDictByCodesApi } from '@/api/dict'
+import { getDictByCodeApi, getDictByCodesApi } from '@/api/system/dict'
 import { setStorageItem, getStorageItem } from '@/common/storage'
 import { DICT } from '@/common/storage/storage-key'
 export default {

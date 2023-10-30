@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { getUserPageApi, deleteUserByIdApi } from '@/api/user'
+import { getUserPageApi, deleteUserByIdApi } from '@/api/system/user'
 export default {
   methods: {
     onClick() {

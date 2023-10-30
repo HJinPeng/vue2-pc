@@ -31,7 +31,7 @@
 
 <script>
 import { InputNumber } from 'ant-design-vue'
-import { addDictItemApi, editDictItemApi } from '@/api/dict/item'
+import { addDictItemApi, editDictItemApi } from '@/api/system/dict/item'
 export default {
   components: {
     [InputNumber.name]: InputNumber

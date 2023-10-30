@@ -48,7 +48,7 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import UserModal from './UserModal.vue'
-import { getUserPageApi, deleteUserByIdApi } from '@/api/user'
+import { getUserPageApi, deleteUserByIdApi } from '@/api/system/user'
 
 export default {
   mixins: [mixinTable],

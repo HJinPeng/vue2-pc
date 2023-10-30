@@ -1,4 +1,4 @@
-import { loginApi, getUserPermissionApi, getUserInfoApi, logoutApi } from '@/api/auth'
+import { loginApi, getUserPermissionApi, getUserInfoApi, logoutApi } from '@/api/system/auth'
 import { setStorageItem } from '@/common/storage'
 import { TOKEN } from '@/common/storage/storage-key'
 import { normalizeMenus, addRoutes } from '@/common/utils/menu-route'

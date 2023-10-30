@@ -53,7 +53,7 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import DictCategoryModal from './DictCategoryModal.vue'
-import { getDictPageApi, deleteDictByIdApi } from '@/api/dict'
+import { getDictPageApi, deleteDictByIdApi } from '@/api/system/dict'
 
 export default {
   mixins: [mixinTable],

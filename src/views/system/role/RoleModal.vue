@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { addRoleApi, editRoleApi } from '@/api/role'
+import { addRoleApi, editRoleApi } from '@/api/system/role'
 export default {
   data() {
     return {

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { addDictApi, editDictApi } from '@/api/dict'
+import { addDictApi, editDictApi } from '@/api/system/dict'
 export default {
   data() {
     return {

@@ -51,7 +51,7 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import DictItemModal from './DictItemModal.vue'
-import { getDictItemPageApi, deleteDictItemByIdApi } from '@/api/dict/item'
+import { getDictItemPageApi, deleteDictItemByIdApi } from '@/api/system/dict/item'
 
 export default {
   mixins: [mixinTable],

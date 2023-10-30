@@ -48,7 +48,7 @@
 <script>
 import mixinTable from '@/common/mixins/table'
 import RoleModal from './RoleModal.vue'
-import { getRolePageApi, deleteRoleByIdApi } from '@/api/role'
+import { getRolePageApi, deleteRoleByIdApi } from '@/api/system/role'
 
 export default {
   mixins: [mixinTable],

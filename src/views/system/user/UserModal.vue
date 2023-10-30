@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { addUserApi, editUserApi } from '@/api/user'
+import { addUserApi, editUserApi } from '@/api/system/user'
 export default {
   data() {
     return {

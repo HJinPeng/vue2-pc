@@ -6,7 +6,12 @@
       <a-input v-model="model.account" placeholder="账号" allow-clear auto-focus>
         <a-icon slot="prefix" type="user" />
       </a-input>
-      <a-input-password v-model="model.password" placeholder="密码" allow-clear>
+      <a-input-password
+        v-model="model.password"
+        placeholder="密码"
+        allow-clear
+        @pressEnter="onLogin"
+      >
         <a-icon slot="prefix" type="lock" />
       </a-input-password>
       <a-button type="primary" :loading="loading" block @click="onLogin">登录</a-button>

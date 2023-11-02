@@ -88,99 +88,99 @@ export function loginApi(data) {
  * @returns {Promise<Object>}
  */
 export function getUserPermissionApi() {
-  // return http({
-  //   url: '/base/permission/queryUserMenuPermission'
-  // })
-
-  return Promise.resolve({
-    menus: [
-      {
-        id: 1,
-        title: '系统管理',
-        permissionName: '系统管理',
-        permissionType: 'menu',
-        menuCode: null,
-        layout: null,
-        icon: 'setting',
-        permissionCode: '',
-        hiddenMenu: null,
-        keepAlive: null,
-        externalLink: null,
-        status: 'enable',
-        children: [
-          {
-            id: 18,
-            permissionName: '菜单管理',
-            permissionType: 'menu',
-            menuCode: 'MenuManagement',
-            layout: 'LayoutHeaderSidebar',
-            icon: 'menu',
-            hiddenMenu: null,
-            keepAlive: true,
-            externalLink: null,
-            status: 'enable',
-            permissionCode: ''
-          },
-          {
-            id: 11,
-            title: '用户管理',
-            permissionName: '用户管理',
-            permissionType: 'menu',
-            menuCode: 'UserManagement',
-            layout: 'LayoutHeaderSidebar',
-            icon: 'user',
-            hiddenMenu: null,
-            keepAlive: true,
-            externalLink: null,
-            status: 'enable',
-            permissionCode: '',
-            children: [
-              {
-                id: 111,
-                permissionName: '用户详情',
-                permissionType: 'menu',
-                menuCode: 'UserDetail',
-                layout: 'LayoutHeaderSidebar',
-                icon: 'menu',
-                hiddenMenu: true,
-                keepAlive: true,
-                externalLink: null,
-                status: 'enable',
-                permissionCode: ''
-              }
-            ]
-          },
-          {
-            id: 14,
-            permissionName: '角色管理',
-            permissionType: 'menu',
-            menuCode: 'RoleManagement',
-            layout: 'LayoutHeaderSidebar',
-            icon: 'crown',
-            hiddenMenu: null,
-            keepAlive: false,
-            externalLink: null,
-            status: 'enable',
-            permissionCode: ''
-          },
-          {
-            id: 13,
-            title: '字典管理',
-            permissionName: '字典管理',
-            permissionType: 'menu',
-            menuCode: 'DictManagement',
-            layout: 'LayoutHeaderSidebar',
-            icon: 'book',
-            hiddenMenu: null,
-            keepAlive: false,
-            externalLink: null,
-            status: 'enable',
-            permissionCode: ''
-          }
-        ]
-      }
-    ]
+  return http({
+    url: '/queryUserMenuPermission'
   })
+
+  // return Promise.resolve({
+  //   menus: [
+  //     {
+  //       id: 1,
+  //       title: '系统管理',
+  //       permissionName: '系统管理',
+  //       permissionType: 'menu',
+  //       menuCode: null,
+  //       layout: null,
+  //       icon: 'setting',
+  //       permissionCode: '',
+  //       hiddenMenu: null,
+  //       keepAlive: null,
+  //       externalLink: null,
+  //       status: 'enable',
+  //       children: [
+  //         {
+  //           id: 18,
+  //           permissionName: '菜单管理',
+  //           permissionType: 'menu',
+  //           menuCode: 'MenuManagement',
+  //           layout: 'LayoutHeaderSidebar',
+  //           icon: 'menu',
+  //           hiddenMenu: null,
+  //           keepAlive: true,
+  //           externalLink: null,
+  //           status: 'enable',
+  //           permissionCode: ''
+  //         },
+  //         {
+  //           id: 11,
+  //           title: '用户管理',
+  //           permissionName: '用户管理',
+  //           permissionType: 'menu',
+  //           menuCode: 'UserManagement',
+  //           layout: 'LayoutHeaderSidebar',
+  //           icon: 'user',
+  //           hiddenMenu: null,
+  //           keepAlive: true,
+  //           externalLink: null,
+  //           status: 'enable',
+  //           permissionCode: '',
+  //           children: [
+  //             {
+  //               id: 111,
+  //               permissionName: '用户详情',
+  //               permissionType: 'menu',
+  //               menuCode: 'UserDetail',
+  //               layout: 'LayoutHeaderSidebar',
+  //               icon: 'menu',
+  //               hiddenMenu: true,
+  //               keepAlive: true,
+  //               externalLink: null,
+  //               status: 'enable',
+  //               permissionCode: ''
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           id: 14,
+  //           permissionName: '角色管理',
+  //           permissionType: 'menu',
+  //           menuCode: 'RoleManagement',
+  //           layout: 'LayoutHeaderSidebar',
+  //           icon: 'crown',
+  //           hiddenMenu: null,
+  //           keepAlive: false,
+  //           externalLink: null,
+  //           status: 'enable',
+  //           permissionCode: ''
+  //         },
+  //         {
+  //           id: 13,
+  //           title: '字典管理',
+  //           permissionName: '字典管理',
+  //           permissionType: 'menu',
+  //           menuCode: 'DictManagement',
+  //           layout: 'LayoutHeaderSidebar',
+  //           icon: 'book',
+  //           hiddenMenu: null,
+  //           keepAlive: false,
+  //           externalLink: null,
+  //           status: 'enable',
+  //           permissionCode: ''
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // })
 }
 
 /**

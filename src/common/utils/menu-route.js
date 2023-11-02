@@ -32,7 +32,12 @@ export function normalizeMenus(menus) {
  */
 function traverseMenus(menus, viewPath, allMenu, sidebarMenus, routes) {
   menus.forEach((menu) => {
-    let _menu = { ...menu, title: menu.permissionName, name: menu.menuCode }
+    let _menu = {
+      ...menu,
+      title: menu.permissionName,
+      name: menu.menuCode,
+      hidden: menu.hiddenMenu === '1'
+    }
     let routeMap
     if (_menu.name) {
       routeMap = allRouteMap[_menu.name]
@@ -51,7 +56,7 @@ function traverseMenus(menus, viewPath, allMenu, sidebarMenus, routes) {
         id: _menu.id,
         title: _menu.title,
         path: _menu.path,
-        hidden: _menu.hiddenMenu,
+        hidden: _menu.hidden,
         name: _menu.name,
         layout: _menu.layout
       }
@@ -66,7 +71,7 @@ function traverseMenus(menus, viewPath, allMenu, sidebarMenus, routes) {
         componentPath: routeMap.componentPath,
         layout: _menu.layout, // 布局
         title: _menu.title,
-        hidden: _menu.hiddenMenu
+        hidden: _menu.hidden
       }
       routes.push(generateRoute(route, _viewPath))
     }
@@ -76,7 +81,7 @@ function traverseMenus(menus, viewPath, allMenu, sidebarMenus, routes) {
 
     // 侧边栏菜单
     let sidebarMenusItem = undefined
-    if (Array.isArray(sidebarMenus) && !_menu.hiddenMenu) {
+    if (Array.isArray(sidebarMenus) && !_menu.hidden) {
       sidebarMenusItem = { ..._menu }
       _menu.children?.length && (sidebarMenusItem.children = [])
       sidebarMenus.push(sidebarMenusItem)
@@ -117,7 +122,7 @@ export function addRoutes(routes) {
  * @param {Number | undefined} route.id
  * @param {'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'} route.layout
  * @param {String} route.title
- * @param {Boolean} route.hiddenMenu
+ * @param {Boolean} route.hidden
  * @param {Array} viewPath 路由完整路径
  * @returns {{ path: String; name: String; component: () => any; meta: { id: Number; layout: 'LayoutSimple' | 'LayoutHeader' | 'LayoutHeaderSidebar' | 'LayoutSidebarHeader'; title: String; hidden: Boolean; viewPath: Array; }; }}
  */
@@ -137,7 +142,7 @@ export function generateRoute(route, viewPath) {
       id: route.id,
       layout: route.layout, // 布局
       title: route.title,
-      hidden: route.hiddenMenu,
+      hidden: route.hidden,
       viewPath
     }
   }

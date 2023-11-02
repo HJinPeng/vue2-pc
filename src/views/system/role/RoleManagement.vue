@@ -41,17 +41,19 @@
       ></BaseTable>
     </BaseCard>
     <RoleModal ref="roleModal" @ok="fetchPage_mx_table" />
+    <SetMenuModal ref="setMenuModal" />
   </AppPage>
 </template>
 
 <script>
 import mixinTable from '@/common/mixins/table'
 import RoleModal from './RoleModal.vue'
+import SetMenuModal from './SetMenuModal.vue'
 import { getRolePageApi, deleteRoleByIdApi } from '@/api/system/role'
 
 export default {
   mixins: [mixinTable],
-  components: { RoleModal },
+  components: { RoleModal, SetMenuModal },
   data() {
     return {
       // 该页需要用到的字典
@@ -69,11 +71,12 @@ export default {
         {
           title: '操作',
           dataIndex: 'id',
-          width: 120,
+          width: 160,
           customRender: (text, record, index) => {
             return (
               <BaseSpace>
                 <a onClick={() => this.onEdit(record)}>编辑</a>
+                <a onClick={() => this.onSetMenu(record)}>菜单</a>
                 <a onClick={() => this.onDelete(record)}>删除</a>
               </BaseSpace>
             )
@@ -107,6 +110,10 @@ export default {
           })
         }
       })
+    },
+    // 设置菜单权限
+    onSetMenu(record) {
+      this.$refs.setMenuModal.open(record)
     },
     // Overwrite 获取分页数据
     fetchPage_mx_table() {

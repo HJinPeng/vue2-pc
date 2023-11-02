@@ -77,3 +77,33 @@ export function deleteRoleByIdApi(id) {
     method: 'delete'
   })
 }
+
+/**
+ * 更新角色对应的菜单
+ * @author jinpengh
+ *
+ * @param {Object} data
+ * @param {Number} data.roleId
+ * @param {Number[]} data.menus
+ * @returns {*}
+ */
+export function updateRoleMenusApi(data) {
+  return http({
+    url: '/role/set-menus',
+    method: 'put',
+    data
+  })
+}
+
+/**
+ * 获取角色对应的菜单id
+ * @author jinpengh
+ *
+ * @param {Number} roleId
+ * @returns {*}
+ */
+export function getRoleMenusApi(roleId) {
+  return http({
+    url: '/role/get-menus/' + roleId
+  })
+}

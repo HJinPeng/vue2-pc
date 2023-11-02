@@ -24,7 +24,7 @@ const routes = Object.keys(staticRouteMap).map((routeName) => {
       componentPath: route.componentPath,
       layout: route.layout,
       title: route.title,
-      hiddenMenu: false,
+      hidden: false,
       id: undefined
     },
     []

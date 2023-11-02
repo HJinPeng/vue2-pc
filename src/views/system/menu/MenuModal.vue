@@ -49,7 +49,7 @@
       <a-form-model-item label="权限码" prop="permissionCode">
         <a-input v-model="model.permissionCode" placeholder="用于接口鉴权，控制显隐等" />
       </a-form-model-item>
-      <a-form-model-item v-if="isMenu" label="是否隐藏" prop="hiddenMenu">
+      <a-form-model-item v-if="isMenu" label="是否显示" prop="hiddenMenu">
         <BaseDict dict-code="show-hide" v-model="model.hiddenMenu" type="radio" />
       </a-form-model-item>
       <a-form-model-item v-if="isMenu" label="是否缓存" prop="keepAlive">

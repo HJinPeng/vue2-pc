@@ -55,11 +55,13 @@ export default {
   methods: {
     ...mapActions(['getDict']),
     _initVal() {
-      return (this.type === 'select' && this.$attrs.mode === 'multiple') || this.type === 'checkbox'
-        ? [...(this.value || [])]
-        : typeof this.value === 'number'
-        ? this.value.toString()
-        : this.value
+      if ((this.type === 'select' && this.$attrs.mode === 'multiple') || this.type === 'checkbox') {
+        return [...(this.value || [])]
+      }
+      if (typeof this.value === 'number') {
+        return this.value.toString()
+      }
+      return this.value
     },
     onChange(param) {
       let value

@@ -32,7 +32,6 @@
         <a-button type="primary" @click="onAdd">新增</a-button>
       </template>
       <BaseTable
-        row-key="id"
         :loading="loading_mx_table"
         :columns="columns_mx_table"
         :data-source="dataSource_mx_table"

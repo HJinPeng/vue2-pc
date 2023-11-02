@@ -1,6 +1,7 @@
 <template>
   <a-table
     ref="baseTable"
+    :row-key="rowKey"
     v-bind="$attrs"
     v-on="$listeners"
     class="base-table"
@@ -14,7 +15,11 @@
 export default {
   inheritAttrs: false,
   props: {
-    sticky: Boolean
+    sticky: Boolean,
+    rowKey: {
+      type: [String, Function],
+      default: 'id'
+    }
   }
 }
 </script>

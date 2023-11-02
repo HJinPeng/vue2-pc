@@ -13,7 +13,7 @@ import { mapActions } from 'vuex'
 export default {
   inheritAttrs: false,
   props: {
-    value: [String, Array],
+    value: [String, Number, Array],
     type: {
       type: String,
       default: 'select' // 'select' | 'radio' | 'checkbox'
@@ -57,6 +57,8 @@ export default {
     _initVal() {
       return (this.type === 'select' && this.$attrs.mode === 'multiple') || this.type === 'checkbox'
         ? [...(this.value || [])]
+        : typeof this.value === 'number'
+        ? this.value.toString()
         : this.value
     },
     onChange(param) {

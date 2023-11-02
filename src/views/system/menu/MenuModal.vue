@@ -50,13 +50,13 @@
         <a-input v-model="model.permissionCode" placeholder="用于接口鉴权，控制显隐等" />
       </a-form-model-item>
       <a-form-model-item v-if="isMenu" label="是否隐藏" prop="hiddenMenu">
-        <BaseDict dict-code="show-hide" v-model="model.hiddenMenu" />
+        <BaseDict dict-code="show-hide" v-model="model.hiddenMenu" type="radio" />
       </a-form-model-item>
       <a-form-model-item v-if="isMenu" label="是否缓存" prop="keepAlive">
-        <BaseDict dict-code="keep-alive" v-model="model.keepAlive" />
+        <BaseDict dict-code="keep-alive" v-model="model.keepAlive" type="radio" />
       </a-form-model-item>
       <a-form-model-item v-if="isMenu" label="是否外链" prop="externalLink">
-        <BaseDict dict-code="external-link" v-model="model.externalLink" />
+        <BaseDict dict-code="external-link" v-model="model.externalLink" type="radio" />
       </a-form-model-item>
       <a-form-model-item
         v-if="isMenu && model.externalLink === '1'"
@@ -69,7 +69,7 @@
         <a-input-number v-model="model.ranking" placeholder="排序" />
       </a-form-model-item>
       <a-form-model-item label="状态" prop="status">
-        <BaseDict dict-code="on-off" v-model="model.status" />
+        <BaseDict dict-code="on-off" v-model="model.status" type="radio" />
       </a-form-model-item>
     </a-form-model>
   </a-modal>

@@ -63,3 +63,14 @@ export function deleteUserByIdApi(id) {
     method: 'delete'
   })
 }
+
+/**
+ * 根据用户id 获取用户详情
+ * @param {Number} userId
+ * @returns
+ */
+export function getUserDetailApi(userId) {
+  return http({
+    url: '/user/detail/' + userId
+  })
+}

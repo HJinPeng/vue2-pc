@@ -59,7 +59,6 @@ export default {
       columns_mx_table: Object.freeze([
         { title: '账号', dataIndex: 'account' },
         { title: '用户名', dataIndex: 'realname' },
-        { title: '角色', dataIndex: 'role' },
         { title: '创建人', dataIndex: 'createByName' },
         { title: '创建时间', dataIndex: 'createDateTime' },
         {

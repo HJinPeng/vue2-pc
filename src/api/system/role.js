@@ -18,6 +18,19 @@ export function getRolePageApi(params) {
 }
 
 /**
+ * 获取所有角色
+ * @author jinpengh
+ *
+ * @export
+ * @returns {*}
+ */
+export function getAllRoleApi() {
+  return http({
+    url: '/role/all'
+  })
+}
+
+/**
  * 添加角色
  * @author jinpengh
  *

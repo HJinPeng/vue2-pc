@@ -1,11 +1,5 @@
 <template>
   <AppPage>
-    <BaseCard>
-      <BaseSearch :disabled="loading" @search="onSearch" @reset="onReset">
-        <a-input placeholder="菜单名称"></a-input>
-        <a-input placeholder="组件名称"></a-input>
-      </BaseSearch>
-    </BaseCard>
     <BaseCard title="菜单管理">
       <template #extra>
         <a-button type="primary" @click="onAdd">新增</a-button>
@@ -60,6 +54,12 @@ export default {
           width: 100
         },
         {
+          title: '状态',
+          dataIndex: 'status',
+          width: 100,
+          customRender: (text) => this.Translate('on-off', text)
+        },
+        {
           title: '操作',
           dataIndex: 'id',
           width: 200,
@@ -81,7 +81,7 @@ export default {
     ...mapGetters(['Translate'])
   },
   async mounted() {
-    await this.getDicts(['menu-btn'])
+    await this.getDicts(['menu-btn', 'on-off'])
     this.fetchMenuTree()
   },
   methods: {
@@ -95,20 +95,6 @@ export default {
         .finally(() => {
           this.loading = false
         })
-    },
-    onSearch() {
-      console.log('onSearch')
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 3000)
-    },
-    onReset() {
-      console.log('onReset')
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 3000)
     },
     onAdd() {
       this.$refs.modal.add()

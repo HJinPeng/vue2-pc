@@ -19,6 +19,9 @@
       <a-form-model-item label="角色名称" prop="roleName">
         <a-input v-model="model.roleName" placeholder="请输入角色名称" />
       </a-form-model-item>
+      <a-form-model-item label="状态" prop="status">
+        <BaseDict dict-code="on-off" v-model="model.status" type="radio" />
+      </a-form-model-item>
     </a-form-model>
   </a-modal>
 </template>
@@ -89,7 +92,8 @@ export default {
     initModel() {
       return {
         roleCode: undefined,
-        roleName: undefined
+        roleName: undefined,
+        status: '1'
       }
     }
   }

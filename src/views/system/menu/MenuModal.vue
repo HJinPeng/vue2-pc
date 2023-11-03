@@ -153,6 +153,38 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           console.log('校验通过')
+          // 不是菜单，只保留相关属性
+          if (!this.isMenu) {
+            const {
+              id,
+              parentId,
+              permissionType,
+              permissionName,
+              permissionCode,
+              ranking,
+              status
+            } = this.model
+            const model = {
+              permissionType,
+              permissionName,
+              menuCode: undefined,
+              icon: undefined,
+              ranking,
+              permissionCode,
+              layout: undefined,
+              hiddenMenu: '0',
+              keepAlive: '0',
+              externalLink: '0',
+              externalLinkContent: undefined,
+              status,
+              parentId
+            }
+
+            if (this.action === 'edit') {
+              model.id = id
+            }
+            this.model = model
+          }
           this.confirmLoading = true
           const fn = this.action === 'add' ? addMenuApi : editMenuApi
           fn(this.model)
@@ -183,9 +215,9 @@ export default {
         ranking: undefined,
         permissionCode: undefined,
         layout: undefined,
-        hiddenMenu: 0,
-        keepAlive: 0,
-        externalLink: 0,
+        hiddenMenu: '0',
+        keepAlive: '0',
+        externalLink: '0',
         externalLinkContent: undefined,
         status: '1',
         parentId: undefined

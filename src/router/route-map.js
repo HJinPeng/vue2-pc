@@ -52,10 +52,30 @@ export const dynamicRouteMap = {
     componentPath: 'views/system/dict/DictManagement.vue',
     layout: 'LayoutSidebarHeader'
   },
-  UserDetail: {
-    title: '用户详情',
-    path: '/user-detail/:id',
-    componentPath: 'views/system/user/UserDetail.vue',
+
+  // TEST: 测试专用
+  TestViewStackFirst: {
+    title: 'FirstView',
+    path: '/test/view-stack/first',
+    componentPath: 'views/test/view-stack/FirstView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackSecond: {
+    title: 'SecondView',
+    path: '/test/view-stack/second/:id',
+    componentPath: 'views/test/view-stack/SecondView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackThird: {
+    title: 'Thirdiew',
+    path: '/test/view-stack/third',
+    componentPath: 'views/test/view-stack/ThirdView.vue',
+    layout: 'LayoutSidebarHeader'
+  },
+  TestViewStackFourth: {
+    title: 'Fourthiew',
+    path: '/test/view-stack/fourth/:id',
+    componentPath: 'views/test/view-stack/FourthView.vue',
     layout: 'LayoutSidebarHeader'
   }
 }

@@ -77,6 +77,12 @@ export const dynamicRouteMap = {
     path: '/test/view-stack/fourth/:id',
     componentPath: 'views/test/view-stack/FourthView.vue',
     layout: 'LayoutSidebarHeader'
+  },
+  TestEchartsExample: {
+    title: 'echarts示例',
+    path: '/test/echarts',
+    componentPath: 'views/test/echarts-example/EchartsExample.vue',
+    layout: 'LayoutSidebarHeader'
   }
 }
 

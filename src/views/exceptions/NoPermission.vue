@@ -1,12 +1,12 @@
 <template>
-  <div class="not-found">
+  <div class="not-permission">
     <p class="tip">没有权限访问该资源，请联系管理员</p>
     <a-button type="primary" @click="$router.go(-1)">返回上一页</a-button>
   </div>
 </template>
 
 <style lang="less" scoped>
-.not-found {
+.not-permission {
   position: relative;
   display: flex;
   flex-direction: column;
